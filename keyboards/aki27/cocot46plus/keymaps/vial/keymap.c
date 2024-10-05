@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Defines names for use in layer keycodes and the keymap
 enum layer_number {
     _BASE = 0,
+    _WBASE,
     _LOWER,
     _RAISE,
     _MOUSE,
@@ -28,6 +29,9 @@ enum layer_number {
     _WRAISE,
     _WMOUSE
 };
+
+#define LSPC LT(_LOWER, KC_SPC)
+#define RENT LT(_RAISE, KC_ENT)
 
 // In the buttom row, KC_MS_BTN3 binds middle-click to the encoder's button press
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -39,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LALT, KC_LGUI,   LT(_LOWER, KC_SPC),  KC_LNG2, KC_MS_BTN1,             KC_MS_BTN2,  KC_LNG1, LT(_RAISE, KC_ENT), KC_BSPC,  KC_ESC,
+                        KC_LALT, KC_LGUI,    LSPC,  KC_LNG2, KC_MS_BTN1,             KC_MS_BTN2,  KC_LNG1,    RENT, KC_BSPC,  KC_ESC,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
@@ -51,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, KC_LALT, LT(_WLOWER, KC_SPC), KC_LNG2, KC_MS_BTN1,    KC_MS_BTN2,  KC_LNG1, LT(_WRAISE, KC_ENT), KC_BSPC,  KC_ESC,
+                        KC_LGUI, KC_LALT,    LSPC, KC_LNG2, KC_MS_BTN1,              KC_MS_BTN2,  KC_LNG1,    RENT, KC_BSPC,  KC_ESC,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
@@ -105,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_MOUSE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, KC_TRNS, MODE_WN, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
+      QK_BOOT, KC_TRNS, MODE_WN, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15,  EE_CLR,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -117,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_WMOUSE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, KC_TRNS, MODE_WN, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
+      QK_BOOT, KC_TRNS, MODE_WN, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15,  EE_CLR,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|

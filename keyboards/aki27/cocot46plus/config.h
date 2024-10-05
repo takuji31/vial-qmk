@@ -39,3 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef LOCKING_SUPPORT_ENABLE
 /* Locking resynchronize hack */
 #undef LOCKING_RESYNC_ENABLE
+
+// VIA
+#define DYNAMIC_KEYMAP_LAYER_COUNT 8

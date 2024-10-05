@@ -9,6 +9,3 @@
 // Toggle
 #define ONESHOT_TAP_TOGGLE 2
 #define TAPPING_TOGGLE 2
-
-// VIA
-#define DYNAMIC_KEYMAP_LAYER_COUNT 8
