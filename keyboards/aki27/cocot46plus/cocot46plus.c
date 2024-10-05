@@ -15,16 +15,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include QMK_KEYBOARD_H
+#include "quantum.h"
 #include <math.h>
+#include "cocot46plus.h"
+#include "wait.h"
+#include "debug.h"
+#include <stdio.h>
+
+
 
 // Invert vertical scroll direction
 #ifndef COCOT_SCROLL_INV_DEFAULT
 #    define COCOT_SCROLL_INV_DEFAULT 1
 #endif
-
-// All the default values here refer to O-based array indexes
-// not actual values
 
 #ifndef COCOT_CPI_OPTIONS
 #    define COCOT_CPI_OPTIONS { 250, 500, 750, 1000, 1250 }
@@ -52,10 +55,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 cocot_config_t cocot_config;
 uint16_t cpi_array[] = COCOT_CPI_OPTIONS;
 uint16_t scrl_div_array[] = COCOT_SCROLL_DIVIDERS;
-int8_t angle_array[] = COCOT_ROTATION_ANGLE;
+uint16_t angle_array[] = COCOT_ROTATION_ANGLE;
 #define CPI_OPTION_SIZE (sizeof(cpi_array) / sizeof(uint16_t))
 #define SCRL_DIV_SIZE (sizeof(scrl_div_array) / sizeof(uint16_t))
-#define ANGLE_SIZE (sizeof(angle_array) / sizeof(int8_t))
+#define ANGLE_SIZE (sizeof(angle_array) / sizeof(uint16_t))
 
 
 // Trackball State
@@ -73,9 +76,10 @@ void pointing_device_init_kb(void) {
     adns5050_write_reg(0x22, 0b10000 | 0x80);
 }
 
+
 report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
 
-    double rad = (double)angle_array[cocot_config.rotation_angle] * (M_PI / 180) * -1;
+    double rad = angle_array[cocot_config.rotation_angle] * (M_PI / 180) * -1;
     int8_t x_rev =  + mouse_report.x * cos(rad) - mouse_report.y * sin(rad);
     int8_t y_rev =  + mouse_report.x * sin(rad) + mouse_report.y * cos(rad);
 
@@ -125,11 +129,24 @@ report_mouse_t pointing_device_task_kb(report_mouse_t mouse_report) {
     return pointing_device_task_user(mouse_report);
 }
 
+
+
 bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
     // xprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
-    
-    if (!process_record_user(keycode, record)) {
-        return false;
+
+    if (!process_record_user(keycode, record)) return false;
+
+    switch (keycode) {
+#ifndef MOUSEKEY_ENABLE
+        // process KC_MS_BTN1~8 by myself
+        // See process_action() in quantum/action.c for details.
+        case KC_MS_BTN1 ... KC_MS_BTN8: {
+            extern void register_button(bool, enum mouse_buttons);
+            register_button(record->event.pressed, MOUSE_BTN_MASK(keycode - KC_MS_BTN1));
+            return false;
+        }
+#endif
+
     }
 
     if (keycode == CPI_SW && record->event.pressed) {
@@ -154,24 +171,21 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
     }
 
     if (keycode == SCRL_IN && record->event.pressed) {
-        cocot_config.scrl_inv = -cocot_config.scrl_inv;
+        cocot_config.scrl_inv = - cocot_config.scrl_inv;
         eeconfig_update_kb(cocot_config.raw);
     }
 
     if (keycode == SCRL_TO && record->event.pressed) {
-        {
-            cocot_config.scrl_mode ^= 1;
-        }
+        { cocot_config.scrl_mode ^= 1; }
     }
 
     if (keycode == SCRL_MO) {
-        {
-            cocot_config.scrl_mode ^= 1;
-        }
+        { cocot_config.scrl_mode ^= 1; }
     }
 
     return true;
 }
+
 
 void eeconfig_init_kb(void) {
     cocot_config.cpi_idx = COCOT_CPI_DEFAULT;
@@ -227,6 +241,17 @@ void render_logo(void) {
 void oled_write_layer_state(void) {
 
     oled_write_P(PSTR(" "), false);
+    // int cpi = pointing_device_get_cpi();
+    int cpi = cpi_array[cocot_config.cpi_idx];
+    int scroll_div = scrl_div_array[cocot_config.scrl_div];
+    int angle = angle_array[cocot_config.rotation_angle];
+
+    char buf1[5];
+    char buf2[3];
+    char buf3[4];
+    snprintf(buf1, 5, "%4d", cpi);
+    snprintf(buf2, 3, "%2d", scroll_div);
+    snprintf(buf3, 4, "%3d", angle);
 
     switch (get_highest_layer(layer_state | default_layer_state)) {
         case 0:
@@ -260,21 +285,12 @@ void oled_write_layer_state(void) {
     } else{
         oled_write_P(PSTR("C"), false);
     }
-
-    char cpi[5];
-    char scroll_div[3];
-    char angle[4];
-    snprintf(cpi, 5, "%4d", cpi_array[cocot_config.cpi_idx]);
-    snprintf(scroll_div, 3, "%2d", scrl_div_array[cocot_config.scrl_div]);
-    snprintf(angle, 4, "%3d",  angle_array[cocot_config.rotation_angle]);
-
     oled_write_P(PSTR("/"), false);
-    oled_write(cpi, false);
+    oled_write(buf1, false);
     oled_write_P(PSTR("/"), false);
-    oled_write(scroll_div, false);
+    oled_write(buf2, false);
     oled_write_P(PSTR("/"), false);
-    oled_write(angle, false);
+    oled_write(buf3, false);
 }
 
 #endif
-
