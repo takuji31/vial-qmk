@@ -28,10 +28,6 @@ enum layer_number {
     _TRACKBALL = 6
 };
 
-#define LW_MHEN LT(1,KC_INT5)  // lower
-#define RS_HENK LT(2,KC_INT4)  // raise
-#define DEL_ALT ALT_T(KC_DEL)
-
 // In the buttom row, KC_MS_BTN3 binds middle-click to the encoder's button press
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
@@ -81,8 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_MS_BTN4,             KC_MS_BTN5,  KC_TRNS,   TT(_TRACKBALL), KC_TRNS,  KC_TRNS,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
-    ),
-  [_RAISE] = LAYOUT(
+    ),  [_RAISE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
