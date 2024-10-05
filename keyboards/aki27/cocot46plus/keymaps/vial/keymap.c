@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LALT, KC_LGUI,   LM(_LOWER, KC_SPC),  KC_LNG2, KC_MS_BTN1,             KC_MS_BTN2,  KC_LNG1, LM(_RAISE, KC_ENT), KC_BSPC,  KC_ESC,
+                        KC_LALT, KC_LGUI,   LT(_LOWER, KC_SPC),  KC_LNG2, KC_MS_BTN1,             KC_MS_BTN2,  KC_LNG1, LT(_RAISE, KC_ENT), KC_BSPC,  KC_ESC,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, KC_LALT, LM(_WLOWER, KC_SPC), KC_LNG2, KC_MS_BTN1,    KC_MS_BTN2,  KC_LNG1, LM(_WRAISE, KC_ENT), KC_BSPC,  KC_ESC,
+                        KC_LGUI, KC_LALT, LT(_WLOWER, KC_SPC), KC_LNG2, KC_MS_BTN1,    KC_MS_BTN2,  KC_LNG1, LT(_WRAISE, KC_ENT), KC_BSPC,  KC_ESC,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
