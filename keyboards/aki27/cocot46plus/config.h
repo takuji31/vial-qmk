@@ -28,3 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define POINTING_DEVICE_ROTATION_180
 #define OLED_FONT_H "keyboards/aki27/cocot46plus/glcdfont.c"
+
+// for RP2040
+#define HAL_USE_I2C TRUE
+#define I2C_DRIVER I2CD1
+#define I2C1_SDA_PIN GP2
+#define I2C1_SCL_PIN GP3
