@@ -28,6 +28,7 @@ typedef union {
         int8_t scrl_inv;
         bool scrl_mode;
         report_mouse_t last_mouse;
+        bool win_mode;
     };
 } cocot_config_t;
 
@@ -36,6 +37,7 @@ extern cocot_config_t cocot_config;
 
 bool cocot_get_scroll_mode(void);
 void cocot_set_scroll_mode(bool mode);
+void cocot_set_win_mode(bool mode);
 
 void render_logo(void);
 void oled_write_layer_state(void);
