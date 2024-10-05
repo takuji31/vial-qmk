@@ -54,7 +54,9 @@
     {"key": "ROT_L15"},
     {"key": "SCRL_MO"},
     {"key": "SCRL_TO"},
-    {"key": "SCRL_IN"}
+    {"key": "SCRL_IN"},
+    {"key": "MODE_MC"},
+    {"key": "MODE_WN"}
   ],
   "layouts": {
     "LAYOUT": {

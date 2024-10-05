@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include QMK_KEYBOARD_H
 #include "quantum.h"
 #include <math.h>
 #include "cocot46plus.h"
@@ -183,6 +184,14 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
         { cocot_config.scrl_mode ^= 1; }
     }
 
+    if (keycode == MODE_MC && record->event.pressed) {
+        set_single_persistent_default_layer(0);
+    }
+
+    if (keycode == MODE_WN && record->event.pressed) {
+        set_single_persistent_default_layer(3);
+    }
+
     return true;
 }
 
@@ -264,16 +273,16 @@ void oled_write_layer_state(void) {
             oled_write_P(PSTR("Raise"), false);
             break;
         case 3:
-            oled_write_P(PSTR("Mouse"), false);
+            oled_write_P(PSTR("WBase"), false);
             break;
         case 4:
-            oled_write_P(PSTR("L4   "), false);
+            oled_write_P(PSTR("WLow "), false);
             break;
         case 5:
-            oled_write_P(PSTR("L5   "), false);
+            oled_write_P(PSTR("WRais"), false);
             break;
         case 6:
-            oled_write_P(PSTR("L6   "), false);
+            oled_write_P(PSTR("MOUSE"), false);
             break;
         default:
             oled_write_P(PSTR("Undef"), false);
