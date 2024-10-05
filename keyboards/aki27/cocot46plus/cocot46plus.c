@@ -189,7 +189,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
     }
 
     if (keycode == MODE_WN && record->event.pressed) {
-        set_single_persistent_default_layer(3);
+        set_single_persistent_default_layer(4);
     }
 
     return true;
@@ -273,16 +273,19 @@ void oled_write_layer_state(void) {
             oled_write_P(PSTR("Raise"), false);
             break;
         case 3:
-            oled_write_P(PSTR("WBase"), false);
+            oled_write_P(PSTR("Mouse"), false);
             break;
         case 4:
-            oled_write_P(PSTR("WLow "), false);
+            oled_write_P(PSTR("WBase"), false);
             break;
         case 5:
-            oled_write_P(PSTR("WRais"), false);
+            oled_write_P(PSTR("WLow "), false);
             break;
         case 6:
-            oled_write_P(PSTR("MOUSE"), false);
+            oled_write_P(PSTR("WRais"), false);
+            break;
+        case 7:
+            oled_write_P(PSTR("WMOUSE"), false);
             break;
         default:
             oled_write_P(PSTR("Undef"), false);
