@@ -34,3 +34,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define I2C_DRIVER I2CD1
 #define I2C1_SDA_PIN GP2
 #define I2C1_SCL_PIN GP3
+
+// VIA
+#define DYNAMIC_KEYMAP_LAYER_COUNT 7
+
+/* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
+#undef LOCKING_SUPPORT_ENABLE
+/* Locking resynchronize hack */
+#undef LOCKING_RESYNC_ENABLE
