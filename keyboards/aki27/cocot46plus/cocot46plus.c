@@ -185,11 +185,13 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
     }
 
     if (keycode == MODE_MC && record->event.pressed) {
-        set_single_persistent_default_layer(0);
+        cocot_set_win_mode(false);
+        eeconfig_update_kb(cocot_config.raw);
     }
 
     if (keycode == MODE_WN && record->event.pressed) {
-        set_single_persistent_default_layer(4);
+        cocot_set_win_mode(true);
+        eeconfig_update_kb(cocot_config.raw);
     }
 
     return true;
@@ -202,9 +204,11 @@ void eeconfig_init_kb(void) {
     cocot_config.rotation_angle = COCOT_ROTATION_DEFAULT;
     cocot_config.scrl_inv = COCOT_SCROLL_INV_DEFAULT;
     cocot_config.scrl_mode = false;
+    cocot_config.win_mode = false;
     eeconfig_update_kb(cocot_config.raw);
     eeconfig_init_user();
     adns5050_write_reg(0x22, 0b10000 | 0x80);
+    cocot_set_win_mode(false);
 }
 
 
@@ -226,6 +230,12 @@ bool cocot_get_scroll_mode(void) {
 
 void cocot_set_scroll_mode(bool mode) {
     cocot_config.scrl_mode = mode;
+}
+
+void cocot_set_win_mode(bool mode) {
+    cocot_config.win_mode = mode;
+    cocot_config.scrl_inv = mode ? -1 : 1;
+    set_single_persistent_default_layer(mode ? 4 : 0);
 }
 
 
