@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Defines names for use in layer keycodes and the keymap
 enum layer_number {
     _BASE = 0,
-    _WBASE,
     _LOWER,
     _RAISE,
     _MOUSE,
