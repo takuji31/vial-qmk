@@ -279,6 +279,9 @@ void oled_write_layer_state(void) {
         case 5:
             oled_write_P(PSTR("WMous"), false);
             break;
+        case 6:
+            oled_write_P(PSTR("Dev  "), false);
+            break;
         default:
             oled_write_P(PSTR("Undef"), false);
             break;

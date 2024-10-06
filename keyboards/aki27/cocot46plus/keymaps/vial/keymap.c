@@ -24,7 +24,8 @@ enum layer_number {
     _LOWER,
     _RAISE,
     _MOUSE,
-    _WMOUSE
+    _WMOUSE,
+    _DEVICE
 };
 
 #define LSPC LT(_LOWER, KC_SPC)
@@ -82,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_MOUSE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, KC_TRNS, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15,  EE_CLR,
+        MO(6), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -94,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_WMOUSE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15,  EE_CLR,
+        MO(6), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -103,18 +104,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,   KC_MS_BTN1,             KC_MS_BTN2,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
+    ),
+  [_DEVICE] = LAYOUT(
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      KC_TRNS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  EE_CLR,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+                        XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,   XXXXXXX,             XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,
+                                                                 XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                            //`--------------'  `--------------'
     )
 };
 
 // Same function on all layers for now.
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_BASE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
-    [_WBASE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
-    [_LOWER] = { ENCODER_CCW_CW(SCMD(KC_TAB), LCMD(KC_TAB)) },
+    [_BASE] = { ENCODER_CCW_CW(SCMD(KC_TAB), LCMD(KC_TAB)) },
+    [_WBASE] = { ENCODER_CCW_CW(LAS(KC_TAB), A(KC_TAB)) },
+    [_LOWER] = { ENCODER_CCW_CW(C(S(KC_TAB)), C(KC_TAB)) },
     [_RAISE] =  { ENCODER_CCW_CW(C(S(KC_TAB)), C(KC_TAB)) },
     [_MOUSE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
-    [_WMOUSE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) }
+    [_WMOUSE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
+    [_DEVICE] = { ENCODER_CCW_CW(XXXXXXX, XXXXXXX) }
 };
 #endif
 
@@ -136,6 +150,10 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     case _MOUSE:
     case _WMOUSE:
         rgblight_sethsv_range(HSV_GREEN, 0, 2);
+        cocot_set_scroll_mode(false);
+        break;
+    case _DEVICE:
+        rgblight_sethsv_range(HSV_WHITE, 0, 2);
         cocot_set_scroll_mode(false);
         break;
     default:
