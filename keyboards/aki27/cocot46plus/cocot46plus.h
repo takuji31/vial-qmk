@@ -33,6 +33,7 @@ typedef union {
 } cocot_config_t;
 
 extern cocot_config_t cocot_config;
+extern bool win_mode;
 
 
 bool cocot_get_scroll_mode(void);

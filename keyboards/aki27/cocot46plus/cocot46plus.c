@@ -61,6 +61,7 @@ uint16_t angle_array[] = COCOT_ROTATION_ANGLE;
 #define SCRL_DIV_SIZE (sizeof(scrl_div_array) / sizeof(uint16_t))
 #define ANGLE_SIZE (sizeof(angle_array) / sizeof(uint16_t))
 
+bool win_mode;
 
 // Trackball State
 bool     BurstState        = false;  // init burst state for Trackball module
@@ -184,31 +185,20 @@ bool process_record_kb(uint16_t keycode, keyrecord_t* record) {
         { cocot_config.scrl_mode ^= 1; }
     }
 
-    if (keycode == MODE_MC && record->event.pressed) {
-        cocot_set_win_mode(false);
-        eeconfig_update_kb(cocot_config.raw);
-    }
-
-    if (keycode == MODE_WN && record->event.pressed) {
-        cocot_set_win_mode(true);
-        eeconfig_update_kb(cocot_config.raw);
-    }
-
     return true;
 }
 
 
 void eeconfig_init_kb(void) {
+    cocot_config.raw = 0;
     cocot_config.cpi_idx = COCOT_CPI_DEFAULT;
     cocot_config.scrl_div = COCOT_SCROLL_DIV_DEFAULT;
     cocot_config.rotation_angle = COCOT_ROTATION_DEFAULT;
     cocot_config.scrl_inv = COCOT_SCROLL_INV_DEFAULT;
     cocot_config.scrl_mode = false;
-    cocot_config.win_mode = false;
     eeconfig_update_kb(cocot_config.raw);
     eeconfig_init_user();
     adns5050_write_reg(0x22, 0b10000 | 0x80);
-    cocot_set_win_mode(false);
 }
 
 
@@ -233,12 +223,10 @@ void cocot_set_scroll_mode(bool mode) {
 }
 
 void cocot_set_win_mode(bool mode) {
-    cocot_config.win_mode = mode;
+    win_mode = mode;
     cocot_config.scrl_inv = mode ? -1 : 1;
-    set_single_persistent_default_layer(mode ? 4 : 0);
+    set_single_persistent_default_layer(mode ? 1 : 0);
 }
-
-
 
 // OLED utility
 #ifdef OLED_ENABLE
@@ -277,25 +265,19 @@ void oled_write_layer_state(void) {
             oled_write_P(PSTR("Base "), false);
             break;
         case 1:
-            oled_write_P(PSTR("Lower"), false);
-            break;
-        case 2:
-            oled_write_P(PSTR("Raise"), false);
-            break;
-        case 3:
-            oled_write_P(PSTR("Mouse"), false);
-            break;
-        case 4:
             oled_write_P(PSTR("WBase"), false);
             break;
+        case 2:
+            oled_write_P(PSTR("Lower"), false);
+            break;
+        case 3:
+            oled_write_P(PSTR("Raise"), false);
+            break;
+        case 4:
+            oled_write_P(PSTR("Mouse"), false);
+            break;
         case 5:
-            oled_write_P(PSTR("WLow "), false);
-            break;
-        case 6:
-            oled_write_P(PSTR("WRais"), false);
-            break;
-        case 7:
-            oled_write_P(PSTR("WMOUSE"), false);
+            oled_write_P(PSTR("WMous"), false);
             break;
         default:
             oled_write_P(PSTR("Undef"), false);
@@ -316,3 +298,11 @@ void oled_write_layer_state(void) {
 }
 
 #endif
+
+bool process_detected_host_os_kb(os_variant_t detected_os) {
+    if (!process_detected_host_os_user(detected_os)) {
+        return false;
+    }
+    cocot_set_win_mode(detected_os == OS_WINDOWS);
+    return true;
+}
