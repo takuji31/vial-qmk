@@ -20,29 +20,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Defines names for use in layer keycodes and the keymap
 enum layer_number {
     _BASE = 0,
+    _WBASE,
     _LOWER,
     _RAISE,
     _MOUSE,
-    _WBASE,
-    _WLOWER,
-    _WRAISE,
     _WMOUSE
 };
 
 #define LSPC LT(_LOWER, KC_SPC)
 #define RENT LT(_RAISE, KC_ENT)
-#define WLSPC LT(_WLOWER, KC_SPC)
-#define WRENT LT(_WRAISE, KC_ENT)
 
 #define LOWER_LAYOUT LAYOUT( \
-       KC_GRV, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),                                       S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_TRNS,\
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_TRNS, KC_TRNS,\
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,\
+       KC_GRV, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),                                       S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0),  KC_EQL,\
+      KC_TRNS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_TRNS, KC_TRNS,\
+      KC_TRNS,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                                        KC_F11,  KC_F12, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,\
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_MS_BTN4,             KC_MS_BTN5,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,\
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX\
     )
 #define RAISE_LAYOUT LAYOUT( \
-      KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_TRNS,\
+      KC_TRNS,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_PLUS,\
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_TRNS, KC_TRNS,\
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,\
                         KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,                  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,\
@@ -70,21 +66,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, KC_LALT,   WLSPC, KC_LNG2, KC_MS_BTN1,              KC_MS_BTN2,  KC_LNG1,   WRENT, KC_BSPC,  KC_ESC,
+                        KC_LGUI, KC_LALT,    LSPC, KC_LNG2, KC_MS_BTN1,              KC_MS_BTN2,  KC_LNG1,    RENT, KC_BSPC,  KC_ESC,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_LOWER] = LOWER_LAYOUT,
-  [_WLOWER] = LOWER_LAYOUT,
   [_RAISE] = RAISE_LAYOUT,
-  [_WRAISE] = RAISE_LAYOUT,
   [_MOUSE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, KC_TRNS, MODE_WN, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15,  EE_CLR,
+      QK_BOOT, KC_TRNS, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15,  EE_CLR,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, MODE_MC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,   KC_MS_BTN1,             KC_MS_BTN2,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -92,11 +86,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_WMOUSE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, KC_TRNS, MODE_WN, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15,  EE_CLR,
+      QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15,  EE_CLR,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, MODE_MC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,   KC_MS_BTN1,             KC_MS_BTN2,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -110,25 +104,24 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_BASE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_WBASE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_LOWER] = { ENCODER_CCW_CW(SCMD(KC_TAB), LCMD(KC_TAB)) },
-    [_WLOWER] = { ENCODER_CCW_CW(LSA(KC_TAB), A(KC_TAB)) },
     [_RAISE] =  { ENCODER_CCW_CW(C(S(KC_TAB)), C(KC_TAB)) },
-    [_WRAISE] =  { ENCODER_CCW_CW(C(S(KC_TAB)), C(KC_TAB)) },
     [_MOUSE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_WMOUSE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) }
 };
 #endif
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _LOWER, _RAISE, _MOUSE);
-    state = update_tri_layer_state(state, _WLOWER, _WRAISE, _WMOUSE);
+    if (win_mode) {
+        state = update_tri_layer_state(state, _LOWER, _RAISE, _WMOUSE);
+    } else {
+        state = update_tri_layer_state(state, _LOWER, _RAISE, _MOUSE);
+    }
     switch (get_highest_layer(state)) {
     case _LOWER:
-    case _WLOWER:
         rgblight_sethsv_range(HSV_BLUE, 0, 2);
         cocot_set_scroll_mode(true);
         break;
     case _RAISE:
-    case _WRAISE:
         rgblight_sethsv_range(HSV_RED, 0, 2);
         cocot_set_scroll_mode(true);
         break;
@@ -154,3 +147,4 @@ bool oled_task_user(void) {
     return false;
 }
 #endif
+

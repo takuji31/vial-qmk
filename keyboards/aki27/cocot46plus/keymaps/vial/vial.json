@@ -36,16 +36,6 @@
             "name": "Scroll Inversion",
             "shortName": "SCRL_IN",
             "title": "Invert scroll direction."
-        },
-        {
-            "name": "Mac Mode",
-            "shortName": "MODE_MC",
-            "title": "Set Mac Mode"
-        },
-        {
-            "name": "Win Mode",
-            "shortName": "MODE_WN",
-            "title": "Set Win Mode"
         }
     ],
     "layouts": {
