@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,                  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
-                                                                 XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                                 XXXXXXX,   KC_MUTE,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
   [_MOUSE] = LAYOUT(
@@ -122,10 +122,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Same function on all layers for now.
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_BASE] = { ENCODER_CCW_CW(SCMD(KC_TAB), LCMD(KC_TAB)) },
-    [_WBASE] = { ENCODER_CCW_CW(LAS(KC_TAB), A(KC_TAB)) },
+    [_BASE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
+    [_WBASE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_LOWER] = { ENCODER_CCW_CW(C(S(KC_TAB)), C(KC_TAB)) },
-    [_RAISE] =  { ENCODER_CCW_CW(C(S(KC_TAB)), C(KC_TAB)) },
+    [_RAISE] =  { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [_MOUSE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_WMOUSE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_DEVICE] = { ENCODER_CCW_CW(XXXXXXX, XXXXXXX) }
