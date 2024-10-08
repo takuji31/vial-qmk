@@ -20,15 +20,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Defines names for use in layer keycodes and the keymap
 enum layer_number {
     _BASE = 0,
-    _WBASE,
     _LOWER,
     _RAISE,
     _MOUSE,
+    _WBASE,
+    _WLOWER,
+    _WRAISE,
     _WMOUSE,
     _DEVICE
 };
-#define LTL_LN2 LT(_LOWER, KC_LNG2)
-#define LTR_LN1 LT(_RAISE, KC_LNG1)
+#define M_SPC LT(_LOWER, KC_SPC)
+#define M_LNG2 LT(_RAISE, KC_LNG2)
+#define M_LNG1 LT(_LOWER, KC_LNG1)
+#define M_ENT LT(_RAISE, KC_ENT)
+#define W_SPC LT(_WLOWER, KC_SPC)
+#define W_LNG2 LT(_WRAISE, KC_LNG2)
+#define W_LNG1 LT(_WLOWER, KC_LNG1)
+#define W_ENT LT(_WRAISE, KC_ENT)
+
 
 // In the buttom row, KC_MS_BTN3 binds middle-click to the encoder's button press
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -40,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LALT, KC_LGUI,  KC_SPC, LTL_LN2,  KC_MS_BTN1,             KC_MS_BTN2,  LTR_LN1,  KC_ENT, KC_BSPC,  KC_ESC,
+                        KC_LALT, KC_LGUI,   M_SPC,  M_LNG2,  KC_MS_BTN1,             KC_MS_BTN2,   M_LNG1,   M_ENT, KC_BSPC,  KC_ESC,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
@@ -52,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, KC_LALT,  KC_SPC, LTL_LN2, KC_MS_BTN1,             KC_MS_BTN2,   LTR_LN1,  KC_ENT, KC_BSPC,  KC_ESC,
+                        KC_LGUI, KC_LALT,   W_SPC,  W_LNG2,  KC_MS_BTN1,             KC_MS_BTN2,   W_LNG1,   W_ENT, KC_BSPC,  KC_ESC,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
@@ -60,9 +69,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
        KC_GRV, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),                                       S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_BSLS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_TRNS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_LCBR, KC_RCBR,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_LCBR, KC_RCBR,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_TRNS,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                                        KC_F11,  KC_F12, KC_TRNS, KC_TRNS, KC_RBRC, KC_RBRC,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                        KC_F11,  KC_F12, KC_TRNS, KC_TRNS, KC_RBRC, KC_RBRC,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_MS_BTN4,             KC_MS_BTN5,  KC_TRNS, KC_TRNS,  KC_DEL, KC_TRNS,
+                                                                 XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                            //`--------------'  `--------------'
+    ),
+  [_WLOWER] = LAYOUT(
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+       KC_GRV, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5),                                       S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_BSLS,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_LCBR, KC_RCBR,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                        KC_F11,  KC_F12, KC_TRNS, KC_TRNS, KC_RBRC, KC_RBRC,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_MS_BTN4,             KC_MS_BTN5,  KC_TRNS, KC_TRNS,  KC_DEL, KC_TRNS,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -72,9 +93,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_TILD,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_PIPE,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_TRNS, KC_TRNS,
+      KC_TRNS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_TRNS, KC_TRNS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                                       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+                        KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,                  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
+                                                                 XXXXXXX,   KC_MUTE,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+                                                            //`--------------'  `--------------'
+    ),
+  [_WRAISE] = LAYOUT(
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      KC_TILD,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_PIPE,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      KC_TRNS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_TRNS, KC_TRNS,
+  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
+      KC_TRNS,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                                       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,                  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,
                                                                  XXXXXXX,   KC_MUTE,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -82,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_MOUSE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-        MO(6), KC_BRID, KC_BRIU, XXXXXXX,LSG(KC_6), XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX,LSG(KC_3),LSG(KC_4),LSG(KC_5),
+  MO(_DEVICE), KC_BRID, KC_BRIU, XXXXXXX,LSG(KC_6), XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX,LSG(KC_3),LSG(KC_4),LSG(KC_5),
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -94,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [_WMOUSE] = LAYOUT(
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-        MO(6), KC_BRID, KC_BRIU, XXXXXXX,A(KC_F10),XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX,A(KC_F1), KC_PSCR, XXXXXXX,
+  MO(_DEVICE), KC_BRID, KC_BRIU, XXXXXXX,A(KC_F10),XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX,A(KC_F1), KC_PSCR, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX,XXXXXXX,LSA(KC_F10),XXXXXXX,XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -112,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QK_BOOT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,   XXXXXXX,             XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,
+                        XXXXXXX, XXXXXXX, KC_TRNS,  KC_TRNS,   XXXXXXX,             XXXXXXX,  KC_TRNS, KC_TRNS, XXXXXXX,  XXXXXXX,
                                                                  XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     )
@@ -124,7 +157,9 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_BASE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_WBASE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_LOWER] = { ENCODER_CCW_CW(C(S(KC_TAB)), C(KC_TAB)) },
+    [_WLOWER] = { ENCODER_CCW_CW(C(S(KC_TAB)), C(KC_TAB)) },
     [_RAISE] =  { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+    [_WRAISE] =  { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [_MOUSE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_WMOUSE] = { ENCODER_CCW_CW(KC_PGUP, KC_PGDN) },
     [_DEVICE] = { ENCODER_CCW_CW(XXXXXXX, XXXXXXX) }
@@ -132,17 +167,17 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #endif
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    if (win_mode) {
-        state = update_tri_layer_state(state, _LOWER, _RAISE, _WMOUSE);
-    } else {
-        state = update_tri_layer_state(state, _LOWER, _RAISE, _MOUSE);
-    }
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _MOUSE);
+    state = update_tri_layer_state(state, _WLOWER, _WRAISE, _WMOUSE);
+
     switch (get_highest_layer(state)) {
     case _LOWER:
+    case _WLOWER:
         rgblight_sethsv_range(HSV_BLUE, 0, 2);
         cocot_set_scroll_mode(true);
         break;
     case _RAISE:
+    case _WRAISE:
         rgblight_sethsv_range(HSV_RED, 0, 2);
         cocot_set_scroll_mode(true);
         break;
