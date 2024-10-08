@@ -225,7 +225,7 @@ void cocot_set_scroll_mode(bool mode) {
 void cocot_set_win_mode(bool mode) {
     win_mode = mode;
     cocot_config.scrl_inv = mode ? -1 : 1;
-    set_single_persistent_default_layer(mode ? 1 : 0);
+    set_single_persistent_default_layer(mode ? 4 : 0);
 }
 
 // OLED utility
@@ -260,30 +260,31 @@ void oled_write_layer_state(void) {
     snprintf(buf2, 3, "%2d", scroll_div);
     snprintf(buf3, 4, "%3d", angle);
 
+    oled_write_P(PSTR(win_mode ? "W" : "M"), false);
+    oled_write_P(PSTR("/"), false);
+
     switch (get_highest_layer(layer_state | default_layer_state)) {
         case 0:
-            oled_write_P(PSTR("Base "), false);
+        case 4:
+            oled_write_P(PSTR("Fn0"), false);
             break;
         case 1:
-            oled_write_P(PSTR("WBase"), false);
+        case 5:
+            oled_write_P(PSTR("Fn1"), false);
             break;
         case 2:
-            oled_write_P(PSTR("Lower"), false);
+        case 6:
+            oled_write_P(PSTR("Fn2"), false);
             break;
         case 3:
-            oled_write_P(PSTR("Raise"), false);
+        case 7:
+            oled_write_P(PSTR("Fn3"), false);
             break;
-        case 4:
-            oled_write_P(PSTR("Mouse"), false);
-            break;
-        case 5:
-            oled_write_P(PSTR("WMous"), false);
-            break;
-        case 6:
-            oled_write_P(PSTR("Dev  "), false);
+        case 8:
+            oled_write_P(PSTR("Dev"), false);
             break;
         default:
-            oled_write_P(PSTR("Undef"), false);
+            oled_write_P(PSTR("Udf"), false);
             break;
     }
     oled_write_P(PSTR("/"), false);
