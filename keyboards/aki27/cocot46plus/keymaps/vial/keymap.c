@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_LCBR, KC_RCBR,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                        KC_F11,  KC_F12, KC_TRNS, KC_TRNS, KC_RBRC, KC_RBRC,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                        KC_F11,  KC_F12, KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_MS_BTN4,             KC_MS_BTN5,  KC_TRNS, KC_TRNS,  KC_DEL, KC_TRNS,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_LCBR, KC_RCBR,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                        KC_F11,  KC_F12, KC_TRNS, KC_TRNS, KC_RBRC, KC_RBRC,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                        KC_F11,  KC_F12, KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_MS_BTN4,             KC_MS_BTN5,  KC_TRNS, KC_TRNS,  KC_DEL, KC_TRNS,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
