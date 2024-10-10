@@ -29,15 +29,10 @@ enum layer_number {
     _WMOUSE,
     _DEVICE
 };
-#define M_SPC LT(_LOWER, KC_SPC)
-#define M_LNG2 LT(_RAISE, KC_LNG2)
-#define M_LNG1 LT(_LOWER, KC_LNG1)
-#define M_ENT LT(_RAISE, KC_ENT)
-#define W_SPC LT(_WLOWER, KC_SPC)
-#define W_LNG2 LT(_WRAISE, KC_LNG2)
-#define W_LNG1 LT(_WLOWER, KC_LNG1)
-#define W_ENT LT(_WRAISE, KC_ENT)
-
+#define M_LNG2 LT(_LOWER, KC_LNG2)
+#define M_LNG1 LT(_RAISE, KC_LNG1)
+#define W_LNG2 LT(_WLOWER, KC_LNG2)
+#define W_LNG1 LT(_WRAISE, KC_LNG1)
 
 // In the buttom row, KC_MS_BTN3 binds middle-click to the encoder's button press
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -49,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LALT, KC_LGUI,   M_SPC,  M_LNG2,  KC_MS_BTN1,             KC_MS_BTN2,   M_LNG1,   M_ENT, KC_BSPC,  KC_ESC,
+                        KC_LALT, KC_LGUI,  KC_SPC,  M_LNG2,  KC_MS_BTN1,             KC_MS_BTN2,   M_LNG1,  KC_ENT, KC_BSPC,  KC_ESC,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
@@ -61,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, KC_LALT,   W_SPC,  W_LNG2,  KC_MS_BTN1,             KC_MS_BTN2,   W_LNG1,   W_ENT, KC_BSPC,  KC_ESC,
+                        KC_LGUI, KC_LALT,  KC_SPC,  W_LNG2,  KC_MS_BTN1,             KC_MS_BTN2,   W_LNG1,  KC_ENT, KC_BSPC,  KC_ESC,
                                                                  XXXXXXX, KC_MS_BTN3,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
                                                             //`--------------'  `--------------'
     ),
