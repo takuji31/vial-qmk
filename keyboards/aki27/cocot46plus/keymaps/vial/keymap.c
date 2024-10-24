@@ -33,21 +33,26 @@ enum layer_number {
 #define M_LNG1 LT(_RAISE, KC_LNG1)
 #define W_LNG2 LT(_WLOWER, KC_LNG2)
 #define W_LNG1 LT(_WRAISE, KC_LNG1)
+
 // Left-hand home row mods
 #define GUI_A LGUI_T(KC_A)
 #define ALT_S LALT_T(KC_S)
 #define CTL_D LCTL_T(KC_D)
 #define SFT_F LSFT_T(KC_F)
-#define ALT_A LALT_T(KC_A)
-#define GUI_S LGUI_T(KC_S)
 
 // Right-hand home row mods
 #define SFT_J RSFT_T(KC_J)
 #define CTL_K RCTL_T(KC_K)
 #define ALT_L LALT_T(KC_L)
 #define GUI_SCLN RGUI_T(KC_SCLN)
-#define GUI_L RGUI_T(KC_L)
-#define ALT_SCLN LALT_T(KC_SCLN)
+
+// Left-hand home row mods
+#define CTL_A LCTL_T(KC_A)
+#define GUI_D LGUI_T(KC_D)
+
+// Right-hand home row mods
+#define GUI_K RGUI_T(KC_K)
+#define CTL_SCLN RCTL_T(KC_SCLN)
 
 // In the buttom row, KC_MS_BTN3 binds middle-click to the encoder's button press
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -55,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                          KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_MINS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL,   ALT_A,   GUI_S,   CTL_D,   SFT_F,    KC_G,                                          KC_H,   SFT_J,   CTL_K,  GUI_L,ALT_SCLN, KC_QUOT,
+      KC_LCTL,   CTL_A,   ALT_S,   GUI_D,   SFT_F,    KC_G,                                          KC_H,   SFT_J,   GUI_K,  ALT_L,CTL_SCLN,  KC_QUOT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
@@ -67,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                          KC_Y,    KC_U,    KC_I,    KC_O,   KC_P, KC_MINUS,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL,   GUI_A,   ALT_S,   CTL_D,   SFT_F,    KC_G,                                          KC_H,   SFT_J,   CTL_K,  ALT_L,GUI_SCLN, KC_QUOT,
+      KC_LCTL,   GUI_A,   ALT_S,   CTL_D,   SFT_F,    KC_G,                                          KC_H,   SFT_J,   CTL_K,  ALT_L,GUI_SCLN,  KC_QUOT,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
   //|-------------------------------------------------------|                                   |-------------------------------------------------------|
