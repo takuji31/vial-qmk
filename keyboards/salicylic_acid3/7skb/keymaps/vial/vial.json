@@ -1,18 +1,9 @@
 {
-    "name": "7skb",
-    "vendorId": "0x04D8",
-    "productId": "0xEB5F",
     "matrix": {
         "rows": 10,
         "cols": 8
     },
     "layouts": {
-        "labels": [
-            [
-                "Layout",
-                "LAYOUT"
-            ]
-        ],
         "keymap": [
             [
                 "0,0\n\n\n0,0",
