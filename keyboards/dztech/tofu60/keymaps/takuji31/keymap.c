@@ -21,31 +21,42 @@
 #include "keys.c"
 
 enum {
-    TD_LT7_ALT_GRV = 99,
+    TD_WLOWER_ALT_GRV = 99,
+};
+
+enum {
+    _BASE = 0,
+    _LOWER = 3,
+    _RAISE = 4,
+    _ADJUST = 15,
+    _WBASE = 1,
+    _WLOWER = 5,
+    _WRAISE = 6,
+    _WADJUST = 15,
 };
 
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, 1, 2, 3);
-    state = update_tri_layer_state(state, 6, 7, 8);
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    state = update_tri_layer_state(state, _WLOWER, _WRAISE, _WADJUST);
     return state;
 };
 
 bool process_detected_host_os_user(os_variant_t detected_os) {
         switch (detected_os) {
         case OS_WINDOWS:
-            set_single_persistent_default_layer(5);
+            set_single_persistent_default_layer(_WBASE);
             break;
         default:
-            set_single_persistent_default_layer(0);
+            set_single_persistent_default_layer(_BASE);
             break;
     }
     return true;
 }
 
 void install_tap_dance_entries(void) {
-    vial_tap_dance_entry_t td0 = { LALT(KC_GRV), MO(7), KC_NO, KC_NO, TAPPING_TERM };
-    dynamic_keymap_set_tap_dance(TD_LT7_ALT_GRV, &td0);
+    vial_tap_dance_entry_t td0 = { LALT(KC_GRV), MO(_WLOWER), KC_NO, KC_NO, TAPPING_TERM };
+    dynamic_keymap_set_tap_dance(TD_WLOWER_ALT_GRV, &td0);
 }
 
 void keyboard_post_init_user(void) {
