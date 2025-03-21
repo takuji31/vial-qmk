@@ -39,6 +39,9 @@ extern bool win_mode;
 bool cocot_get_scroll_mode(void);
 void cocot_set_scroll_mode(bool mode);
 void cocot_set_win_mode(bool mode);
+int cocot_get_cpi(void);
+int cocot_get_scroll_div(void);
+int cocot_get_rotation_angle(void);
 
 void render_logo(void);
 void oled_write_layer_state(void);

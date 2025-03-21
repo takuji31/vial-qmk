@@ -228,6 +228,17 @@ void cocot_set_win_mode(bool mode) {
     set_single_persistent_default_layer(mode ? 4 : 0);
 }
 
+int cocot_get_cpi(void) {
+    return cpi_array[cocot_config.cpi_idx];
+}
+int cocot_get_scroll_div(void) {
+    return scrl_div_array[cocot_config.scrl_div];
+}
+int cocot_get_rotation_angle(void) {
+    return angle_array[cocot_config.rotation_angle];
+}
+
+
 // OLED utility
 #ifdef OLED_ENABLE
 
@@ -249,9 +260,9 @@ void oled_write_layer_state(void) {
 
     oled_write_P(PSTR(" "), false);
     // int cpi = pointing_device_get_cpi();
-    int cpi = cpi_array[cocot_config.cpi_idx];
-    int scroll_div = scrl_div_array[cocot_config.scrl_div];
-    int angle = angle_array[cocot_config.rotation_angle];
+    int cpi = cocot_get_cpi();
+    int scroll_div = cocot_get_scroll_div();
+    int angle = cocot_get_rotation_angle();
 
     char buf1[5];
     char buf2[3];
