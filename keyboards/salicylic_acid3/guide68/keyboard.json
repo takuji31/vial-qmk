@@ -46,6 +46,9 @@
     "ws2812": {
         "pin": "D3"
     },
+        "build": {
+        "lto": true
+    },
     "split": {
         "enabled": true,
         "handedness": {
