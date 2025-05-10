@@ -14,9 +14,11 @@
     },
     "matrix_pins": {
         "direct": [
-                ["GP10", "GP11", "GP12", null],
-                [null, null, null, null],
-                [null, null, null, null]
+                ["GP10", "GP11", "GP12", null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null, null, null, null]
             ]
     },
     "processor": "RP2040",
@@ -41,8 +43,35 @@
                 {"matrix": [2, 0], "x": 0, "y": 2},
                 {"matrix": [2, 1], "x": 1, "y": 2},
                 {"matrix": [2, 2], "x": 2, "y": 2},
-                {"matrix": [2, 3], "x": 3, "y": 2}
+                {"matrix": [2, 3], "x": 3, "y": 2},
 
+                {"matrix": [3, 0], "x": 0, "y": 3},
+                {"matrix": [3, 1], "x": 1, "y": 3},
+                {"matrix": [3, 2], "x": 2, "y": 3},
+                {"matrix": [3, 3], "x": 3, "y": 3},
+                {"matrix": [3, 4], "x": 3, "y": 3},
+                {"matrix": [3, 5], "x": 3, "y": 3},
+                {"matrix": [3, 6], "x": 3, "y": 3},
+                {"matrix": [3, 7], "x": 3, "y": 3},
+                {"matrix": [3, 8], "x": 3, "y": 3},
+                {"matrix": [3, 9], "x": 3, "y": 3},
+                {"matrix": [3, 10], "x": 3, "y": 3},
+                {"matrix": [3, 11], "x": 3, "y": 3},
+                {"matrix": [3, 12], "x": 3, "y": 3},
+
+                {"matrix": [4, 0], "x": 0, "y": 3},
+                {"matrix": [4, 1], "x": 1, "y": 3},
+                {"matrix": [4, 2], "x": 2, "y": 3},
+                {"matrix": [4, 3], "x": 3, "y": 3},
+                {"matrix": [4, 4], "x": 3, "y": 3},
+                {"matrix": [4, 5], "x": 3, "y": 3},
+                {"matrix": [4, 6], "x": 3, "y": 3},
+                {"matrix": [4, 7], "x": 3, "y": 3},
+                {"matrix": [4, 8], "x": 3, "y": 3},
+                {"matrix": [4, 9], "x": 3, "y": 3},
+                {"matrix": [4, 10], "x": 3, "y": 3},
+                {"matrix": [4, 11], "x": 3, "y": 3},
+                {"matrix": [4, 12], "x": 3, "y": 3}
             ]
         }
     }

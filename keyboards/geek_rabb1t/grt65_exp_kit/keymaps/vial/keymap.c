@@ -3,35 +3,18 @@
 
 #include QMK_KEYBOARD_H
 #include <print.h>
-#include "gr_trackpad65_driver.h"
-
-enum my_keycodes {
-  HIGH_SPEED = QK_KB_0,
-  LOW_SPEED,
-  TGL_V_SCL,
-  TGL_H_SCL,
-  EN_3_TAP,
-  DIS_3_TAP,
-};
+#include "trackpad/gr_trackpad65_config.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [0] = LAYOUT(
         MS_BTN1 , MS_BTN3,    MS_BTN2,
         G(KC_TAB), KC_BTN5, G(KC_D), KC_BTN4,
-        G(KC_TAB), G(C(KC_RGHT)), G(KC_D), G(C(KC_LEFT))
+        G(KC_TAB), G(C(KC_RGHT)), G(KC_D), G(C(KC_LEFT)),
+        GRTL_CS, GRTL_CA, GRTL_SS, GRTL_TS, GRTL_ET, GRTL_ETFT, GRTL_RVS, GRTL_RHS, GRTL_IC, GRTL_IS, GRTL_MOE, GRTL_SO, GRTL_R,
+        GRT_SPD_5, GRT_SPD_5, GRT_SPD_5, GRT_SPD_5, GRT_ON, GRT_ON, GRT_ON, GRT_ON, GRT_ON, GRT_ON, GRT_ON, GRT_ON, GRT_R0
     ),
 };
-
-
-
-void keyboard_post_init_user(void) {
-    // Customise these values to desired behaviour
-    // debug_enable = true;
-    //debug_matrix = true;
-    //debug_keyboard = true;
-    //debug_mouse = true;
-}
 
 typedef enum  {
     SPEED_MODE_LOW,
@@ -59,33 +42,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return true;
 
-    case TGL_V_SCL:
-      if (record->event.pressed) {
-        trackpad_config.reverse_vertical_scroll = !trackpad_config.reverse_vertical_scroll;
-        update_trackpad_config(trackpad_config);
-      }
-      return false;
-
-    case TGL_H_SCL:
-      if (record->event.pressed) {
-        trackpad_config.reverse_horizontal_scroll = !trackpad_config.reverse_horizontal_scroll;
-        update_trackpad_config(trackpad_config);
-      }
-      return false;
-
-    case EN_3_TAP:
-      if (record->event.pressed) {
-        trackpad_config.disable_3fingers_tap = false;
-        update_trackpad_config(trackpad_config);
-      }
-      return false;
-
-    case DIS_3_TAP:
-      if (record->event.pressed) {
-        trackpad_config.disable_3fingers_tap = true;
-        update_trackpad_config(trackpad_config);
-      }
-      return false;
+    case SCROLL_MODE:
+      // TODO 実装する
+      return true;
 
     default:
       return true;
