@@ -26,7 +26,8 @@
 #include "wait.h"
 #include "timer.h"
 #include "gr_trackpad65_driver.h"
-#include "gr_trackpad65_reporter.h"
+#include "gr_trackpad65_cursor_corrector.h"
+#include "gesture/gr_trackpad65_state.h"
 #include <math.h>
 
 #define CONSTRAIN_HID(amt) ((amt) < INT8_MIN ? INT8_MIN : ((amt) > INT8_MAX ? INT8_MAX : (amt)))
@@ -58,6 +59,11 @@ void pointing_device_driver_init(void) {
     }
 };
 
+static report_mouse_t report(azoteq_iqs5xx_base_data_t base_data) {
+    trackpad_base_data_t trackpad_data = cursor_corrector_correct(base_data);
+    return trackpad_report(trackpad_data);
+}
+
 report_mouse_t pointing_device_driver_get_report(report_mouse_t mouse_report) {
     report_mouse_t temp_report           = {0};
     static uint8_t previous_button_state = 0;
@@ -69,7 +75,7 @@ report_mouse_t pointing_device_driver_get_report(report_mouse_t mouse_report) {
 
         if (status == I2C_STATUS_SUCCESS) {
             read_error_count = 0;
-            temp_report = trackpad_reporter_report(base_data);
+            temp_report = report(base_data);
             previous_button_state = temp_report.buttons;
 
         } else {

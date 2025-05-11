@@ -10,7 +10,6 @@ SRC += trackpad/azoteq_iqs5xx.c
 SRC += trackpad/gr_trackpad65.c
 SRC += trackpad/gr_trackpad65_driver.c
 SRC += trackpad/gr_trackpad65_config.c
-SRC += trackpad/gr_trackpad65_reporter.c
 SRC += trackpad/gr_trackpad65_cursor_corrector.c
 SRC += trackpad/gesture/gr_trackpad65_gesture_strategy.c
 SRC += trackpad/gesture/gr_trackpad65_gesture_fire_strategy.c
