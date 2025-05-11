@@ -150,7 +150,7 @@ void get_finger_delta(azoteq_iqs5xx_base_data_t base_data, position_t *delta) {
     return;
 }
 
-mouse_xy_report_t correct_cursor(int delta, int prev, bool print) {
+mouse_xy_report_t correct_cursor(int delta, int prev) {
 
     int avg = (delta + prev);
     int ratio = (fmin(abs(avg), 255)) * 15 / 255 + 5;
@@ -171,8 +171,8 @@ trackpad_base_data_t cursor_corrector_correct(azoteq_iqs5xx_base_data_t base_dat
         .pos.y = position.y,
         .prev_pos.x = prev.x,
         .prev_pos.y = prev.y,
-        .mouse_report_x = correct_cursor(position.x, prev.x, true),
-        .mouse_report_y = correct_cursor(position.y, prev.y, false),
+        .mouse_report_x = correct_cursor(position.x, prev.x),
+        .mouse_report_y = correct_cursor(position.y, prev.y),
         .touch_strength = get_touch_strength(base_data),
         .num_of_fingers = base_data.number_of_fingers,
     };

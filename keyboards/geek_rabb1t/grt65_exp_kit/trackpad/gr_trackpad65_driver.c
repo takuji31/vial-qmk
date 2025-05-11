@@ -27,6 +27,7 @@
 #include "timer.h"
 #include "gr_trackpad65_driver.h"
 #include "gr_trackpad65_cursor_corrector.h"
+#include "rotate_cursor.h"
 #include "gesture/gr_trackpad65_state.h"
 #include <math.h>
 
@@ -61,7 +62,8 @@ void pointing_device_driver_init(void) {
 
 static report_mouse_t report(azoteq_iqs5xx_base_data_t base_data) {
     trackpad_base_data_t trackpad_data = cursor_corrector_correct(base_data);
-    return trackpad_report(trackpad_data);
+     trackpad_base_data_t rotated = gr_trackpad65_rotate_cursor(trackpad_data);
+    return trackpad_report(rotated);
 }
 
 report_mouse_t pointing_device_driver_get_report(report_mouse_t mouse_report) {

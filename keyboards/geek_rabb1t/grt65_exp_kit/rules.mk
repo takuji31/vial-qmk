@@ -20,3 +20,4 @@ SRC += trackpad/gesture/gr_trackpad65_state.c
 SRC += trackpad/gesture/gr_trackpad65_strategy_helper.c
 SRC += trackpad/gesture/gr_trackpad65_touch_strategy.c
 SRC += trackpad/gesture/gr_trackpad65_wait_strategy.c
+SRC += trackpad/rotate_cursor.c
