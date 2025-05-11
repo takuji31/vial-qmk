@@ -13,53 +13,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#pragma once
 
 #include "report.h"
 #include "pointing_device.h"
 
-typedef struct {
-    int x;
-    int y;
-} position_t;
-
-typedef struct {
-    int x;
-    int y;
-    int strength;
-} position_with_strength_t;
-
-typedef enum {
-    scroll_direction_vertical,
-    scroll_direction_horizontal,
-    scroll_direction_both,
-    scroll_direction_tbd,
-} scroll_direction_t;
-
-typedef struct {
-    position_t pos;
-    position_t prev_pos;
-    mouse_xy_report_t mouse_report_x;
-    mouse_xy_report_t mouse_report_y;
-    int touch_strength;
-    int num_of_fingers;
-} trackpad_base_data_t;
-
-
-typedef enum {
-    touch_state_none,
-    touch_state_touch,
-    touch_state_press,
-} touch_state_t;
-
-typedef enum {
-    trackpad_state_idle,
-    trackpad_state_touch,
-    trackpad_state_move,
-    trackpad_state_gesture,
-    trackpad_state_gesture_fire,
-    trackpad_state_press,
-    trackpad_state_wait,
-} trackpad_state_t;
 
 typedef enum  {
     trackpad_event_none = -1,
@@ -69,10 +27,6 @@ typedef enum  {
     trackpad_event_swipe_left = 3,
 } trackpad_gesture_event_t;
 
-typedef struct {
-    bool is_pressed;
-    pointing_device_buttons_t button_num;
-} dispatch_button_t;
 
 typedef struct {
     trackpad_gesture_event_t type;

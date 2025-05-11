@@ -32,6 +32,13 @@
 #define CONSTRAIN_HID(amt) ((amt) < INT8_MIN ? INT8_MIN : ((amt) > INT8_MAX ? INT8_MAX : (amt)))
 #define CONSTRAIN_HID_XY(amt) ((amt) < XY_REPORT_MIN ? XY_REPORT_MIN : ((amt) > XY_REPORT_MAX ? XY_REPORT_MAX : (amt)))
 
+
+
+trackpad_event_t trackpad_event = {
+    .type = trackpad_event_none,
+    .num_of_fingers = 0
+};
+
 static i2c_status_t azoteq_iqs5xx_init_status = 1;
 
 void pointing_device_driver_init(void) {
@@ -51,11 +58,6 @@ void pointing_device_driver_init(void) {
     }
 };
 
-report_mouse_t pointing_device_generate_report(azoteq_iqs5xx_base_data_t base_data) {
-    return trackpad_reporter_report(base_data);
-}
-
-
 report_mouse_t pointing_device_driver_get_report(report_mouse_t mouse_report) {
     report_mouse_t temp_report           = {0};
     static uint8_t previous_button_state = 0;
@@ -67,7 +69,7 @@ report_mouse_t pointing_device_driver_get_report(report_mouse_t mouse_report) {
 
         if (status == I2C_STATUS_SUCCESS) {
             read_error_count = 0;
-            temp_report = pointing_device_generate_report(base_data);
+            temp_report = trackpad_reporter_report(base_data);
             previous_button_state = temp_report.buttons;
 
         } else {
@@ -92,4 +94,9 @@ uint16_t pointing_device_driver_get_cpi(void) {
 
 void pointing_device_driver_set_cpi(uint16_t cpi) {
     azoteq_iqs5xx_set_cpi(cpi);
+}
+
+void reset_trackpad_event(void) {
+    trackpad_event.type = trackpad_event_none;
+    trackpad_event.num_of_fingers = 0;
 }

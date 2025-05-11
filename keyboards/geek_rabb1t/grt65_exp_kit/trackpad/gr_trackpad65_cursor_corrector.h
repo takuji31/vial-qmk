@@ -1,4 +1,5 @@
-/* Copyright 2025 Geek-rabb1t (@geek-rabb1t)
+/*
+ * Copyright 2025 Geek-rabb1t (@geek-rabb1t)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,18 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #pragma once
 
-typedef struct {
-    uint8_t two_finger_gesture_row;
-    uint8_t three_finger_gesture_row;
-    uint8_t four_finger_gesture_row;
-    uint8_t configuration_row;
-    uint8_t configuration_layer;
-    bool allow_rotate;
-} trackpad_matrix_config_t;
+#include "azoteq_iqs5xx.h"
 
-void matrix_scan_trackpad(void);
-report_mouse_t pointing_device_task_trackpad(report_mouse_t mouse_report);
-bool process_record_trackpad(uint16_t keycode, keyrecord_t *record);
-void keyboard_post_init_trackpad(trackpad_matrix_config_t config);
+typedef struct {
+    int x;
+    int y;
+} position_t;
+
+typedef struct {
+    position_t pos;
+    position_t prev_pos;
+    mouse_xy_report_t mouse_report_x;
+    mouse_xy_report_t mouse_report_y;
+    int touch_strength;
+    int num_of_fingers;
+} trackpad_base_data_t;
+
+
+trackpad_base_data_t cursor_corrector_correct(azoteq_iqs5xx_base_data_t base_data);
