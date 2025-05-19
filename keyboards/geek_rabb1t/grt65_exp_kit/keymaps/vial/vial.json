@@ -3,84 +3,84 @@
     "lighting": "none",
     "customKeycodes": [
 	    {
-            "shortName": "GRT_SPD_0",
+            "shortName": "SPD0",
 	        "title": "Lowest Speed.",
 	        "name": "GRT_SPD_0"
     	},
 	    {
-            "shortName": "GRT_SPD_1",
+            "shortName": "SPD1",
 	        "title": "Lower Speed.",
 	        "name": "GRT_SPD_1"
     	},
 	    {
-            "shortName": "GRT_SPD_2",
+            "shortName": "SPD2",
 	        "title": "Low Speed.",
 	        "name": "GRT_SPD_2"
     	},
 	    {
-            "shortName": "GRT_SPD_3",
+            "shortName": "SPD3",
 	        "title": "Lowest Speed.",
 	        "name": "GRT_SPD_3"
     	},
 	    {
-            "shortName": "GRT_SPD_4",
+            "shortName": "SPD4",
 	        "title": "Lowest Speed.",
 	        "name": "GRT_SPD_4"
     	},
 	    {
-            "shortName": "GRT_SPD_5",
+            "shortName": "SPD5",
 	        "title": "Lowest Speed.",
 	        "name": "GRT_SPD_5"
     	},
 	    {
-            "shortName": "GRT_SPD_6",
+            "shortName": "SPD6",
 	        "title": "Lowest Speed.",
 	        "name": "GRT_SPD_6"
     	},
 	    {
-            "shortName": "GRT_SPD_7",
+            "shortName": "SPD7",
 	        "title": "Lowest Speed.",
 	        "name": "GRT_SPD_7"
     	},
 	    {
-            "shortName": "GRT_SPD_8",
+            "shortName": "SPD8",
 	        "title": "Lowest Speed.",
 	        "name": "GRT_SPD_8"
     	},
 	    {
-            "shortName": "GRT_SPD_9",
+            "shortName": "SPD9",
 	        "title": "Highest Speed.",
 	        "name": "GRT_SPD_9"
     	},
 
 	    {
-            "shortName": "GRT_ON",
+            "shortName": "ON",
 	        "title": "Feature ON",
 	        "name": "GRT_ON"
     	},
 	    {
-            "shortName": "GRT_OFF",
+            "shortName": "OFF",
 	        "title": "Feature OFF",
 	        "name": "GRT_OFF"
     	},
 
 	    {
-            "shortName": "GRT_R0",
+            "shortName": "R0",
 	        "title": "Trackpad Rotation:0 degree",
 	        "name": "GRT_R0"
     	},
 	    {
-            "shortName": "GRT_R90",
+            "shortName": "R90",
 	        "title": "Trackpad Rotation:90 degree",
 	        "name": "GRT_R90"
     	},
 	    {
-            "shortName": "GRT_R180",
+            "shortName": "R180",
 	        "title": "Trackpad Rotation:180 degree",
 	        "name": "GRT_R180"
     	},
 	    {
-            "shortName": "GRT_R270",
+            "shortName": "R270",
 	        "title": "Trackpad Rotation:270 degree",
 	        "name": "GRT_R270"
     	},
