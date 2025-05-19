@@ -52,6 +52,10 @@ dispatch_button_t dispatch_buttons(int num_of_fingers) {
         .button_num = POINTING_DEVICE_BUTTON1
     };
 
+    if (!gr_trackpad_config.tap) {
+        return temp;
+    }
+
     if ( num_of_fingers > 3 ||
         (num_of_fingers == 3 && !gr_trackpad_config.three_finger_tap)) {
         temp.is_pressed = false;
