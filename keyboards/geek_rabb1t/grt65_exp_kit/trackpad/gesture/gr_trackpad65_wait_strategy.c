@@ -19,6 +19,7 @@
 #include "gr_trackpad65_strategy_helper.h"
 #include "../gr_trackpad65_driver.h"
 #include "timer.h"
+#include "quantum.h"
 
 extern trackpad_gesture_handle_state_t gesture_handle_state;
 
@@ -27,6 +28,7 @@ trackpad_state_t update_wait_state(trackpad_base_data_t *trackpad_data) {
 
     if (touch_state == touch_state_none) {
         if (timer_elapsed(gesture_handle_state.tap_interval) >= FUTABA_RETAP_WAITING_TIME) {
+            reset_trackpad_event();
             return trackpad_state_idle;
         }
     }
@@ -44,14 +46,12 @@ report_mouse_t wait_strategy(trackpad_base_data_t *trackpad_data) {
 
     if (gesture_handle_state.doubleTap) {
         gesture_handle_state.doubleTap = false;
+        reset_trackpad_event();
         return temp_report;
     }
-    dispatch_button_t button = dispatch_buttons(gesture_handle_state.max_fingers);
-    if (!button.is_pressed) {
-        return temp_report;
-    }
-    // pd_dprintf("press wait: %d fingers.\n",max_fingers);
-    temp_report.buttons = pointing_device_handle_buttons(temp_report.buttons, true, button.button_num);
+
+    trackpad_event.type = trackpad_event_press;
+    trackpad_event.num_of_fingers = gesture_handle_state.max_fingers;
 
     return temp_report;
 }

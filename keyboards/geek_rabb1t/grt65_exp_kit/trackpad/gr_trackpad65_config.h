@@ -18,8 +18,7 @@
 #include QMK_KEYBOARD_H
 
 enum GR_TRACKPAD_KEYCODES {
-    GRT_SPD_0 = QK_KB_0,
-    GRT_SPD_1,
+    GRT_SPD_1= QK_KB_0,
     GRT_SPD_2,
     GRT_SPD_3,
     GRT_SPD_4,
@@ -45,15 +44,17 @@ enum GR_TRACKPAD_KEYCODES {
     GRTL_CA,
     GRTL_SS,
     GRTL_TS,
-    GRTL_ET,
-    GRTL_ETFT,
     GRTL_RVS,
     GRTL_RHS,
     GRTL_IC,
     GRTL_IS,
     GRTL_MOE,
     GRTL_SO,
-    GRTL_R
+    GRTL_R,
+    GRTL_1T,
+    GRTL_2T,
+    GRTL_3T,
+    GRTL_4T
 
 } gr_trackpad_keycodes_t;
 
@@ -69,9 +70,6 @@ typedef struct {
     uint16_t cursor_accel;
     uint16_t scroll_speed;
     uint16_t tap_sensitivity;
-
-    bool tap;
-    bool three_finger_tap;
 
     bool reverse_vertical_scroll;
     bool reverse_horizontal_scroll;

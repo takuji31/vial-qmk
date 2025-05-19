@@ -15,10 +15,10 @@
  */
 #pragma once
 
+#define MAX_FINGERS 4
+
 typedef struct {
-    uint8_t two_finger_gesture_row;
-    uint8_t three_finger_gesture_row;
-    uint8_t four_finger_gesture_row;
+    uint8_t finger_gesture_rows[MAX_FINGERS];
     uint8_t configuration_row;
     uint8_t configuration_layer;
     bool allow_rotate;

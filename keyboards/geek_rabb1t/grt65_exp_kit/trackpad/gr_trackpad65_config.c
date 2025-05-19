@@ -23,19 +23,16 @@ typedef enum  {
     scroll_speed = 2,
     tap_sensitivity = 3,
 
-    tap = 4,
-    three_finger_tap= 5,
+    reverse_vertical_scroll = 4,
+    reverse_horizontal_scroll = 5,
 
-    reverse_vertical_scroll = 6,
-    reverse_horizontal_scroll = 7,
+    inertia_cursor = 6,
+    inertia_scroll = 7,
+    move_on_edge = 8,
 
-    inertia_cursor = 8,
-    inertia_scroll = 9,
-    move_on_edge = 10,
+    scroll_only = 9,
 
-    scroll_only = 11,
-
-    rotate = 12
+    rotate = 10
 } config_col_t;
 
 
@@ -47,7 +44,7 @@ const static int MIN_SPEED = 0;
 const static int MAX_SPEED = 9;
 
 int resolve_speed(uint16_t keycode, int defaultValue) {
-    int speed = keycode - GRT_SPD_0;
+    int speed = keycode - GRT_SPD_5;
     return
         speed < MIN_SPEED ? defaultValue :
         speed > MAX_SPEED ? defaultValue : speed;
@@ -97,9 +94,6 @@ void load_gr_trackpad65_config(uint8_t config_layer, uint8_t config_row, bool al
     gr_trackpad_config.cursor_accel    = read_speed(cursor_accel, 5);
     gr_trackpad_config.scroll_speed    = read_speed(scroll_speed, 5);
     gr_trackpad_config.tap_sensitivity = read_speed(tap_sensitivity, 5);
-
-    gr_trackpad_config.tap = read_bool(tap, true);
-    gr_trackpad_config.three_finger_tap = read_bool(three_finger_tap, true);
 
     gr_trackpad_config.reverse_vertical_scroll = read_bool(reverse_vertical_scroll, false);
     gr_trackpad_config.reverse_horizontal_scroll = read_bool(reverse_horizontal_scroll, false);

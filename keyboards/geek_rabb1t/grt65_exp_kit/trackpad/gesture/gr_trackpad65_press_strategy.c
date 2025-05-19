@@ -17,7 +17,9 @@
 
 #include "gr_trackpad65_idle_strategy.h"
 #include "gr_trackpad65_strategy_helper.h"
+#include "../gr_trackpad65_driver.h"
 #include "timer.h"
+#include "quantum.h"
 
 extern trackpad_gesture_handle_state_t gesture_handle_state;
 
@@ -36,12 +38,8 @@ trackpad_state_t update_press_state(trackpad_base_data_t *trackpad_data) {
 report_mouse_t press_strategy(trackpad_base_data_t *trackpad_data) {
     report_mouse_t temp_report = {0};
 
-    dispatch_button_t button = dispatch_buttons(gesture_handle_state.max_fingers);
-    if (!button.is_pressed) {
-        return temp_report;
-    }
-    // pd_dprintf("press: %d fingers.\n",max_fingers);
-    temp_report.buttons = pointing_device_handle_buttons(temp_report.buttons, true, button.button_num);
+    trackpad_event.type = trackpad_event_press;
+    trackpad_event.num_of_fingers = gesture_handle_state.max_fingers;
 
     if (trackpad_data->mouse_report_x != 0 || trackpad_data->mouse_report_y != 0) {
         gesture_handle_state.doubleTap = false;

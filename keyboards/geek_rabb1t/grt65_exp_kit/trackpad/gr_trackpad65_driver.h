@@ -21,10 +21,11 @@
 
 typedef enum  {
     trackpad_event_none = -1,
-    trackpad_event_swipe_up = 0,
-    trackpad_event_swipe_right = 1,
-    trackpad_event_swipe_down = 2,
-    trackpad_event_swipe_left = 3,
+    trackpad_event_press = 0,
+    trackpad_event_swipe_up = 1,
+    trackpad_event_swipe_right = 2,
+    trackpad_event_swipe_down = 3,
+    trackpad_event_swipe_left = 4,
 } trackpad_gesture_event_t;
 
 

@@ -55,6 +55,5 @@ trackpad_gesture_handle_state_t gesture_handle_state;
 
 int8_t calc_max_fingers(int8_t current, int8_t previous);
 touch_state_t get_touch_state(trackpad_base_data_t *trackpad_data);
-dispatch_button_t dispatch_buttons(int num_of_fingers);
 void reset_gesture_status(void);
 

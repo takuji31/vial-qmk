@@ -25,6 +25,7 @@ extern trackpad_gesture_handle_state_t gesture_handle_state;
 
 trackpad_state_t update_gesture_fire_state(trackpad_base_data_t *trackpad_data) {
     touch_state_t touch_state = get_touch_state(trackpad_data);
+    reset_trackpad_event();
 
     if (touch_state == touch_state_touch) {
         return trackpad_state_touch;

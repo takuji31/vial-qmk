@@ -46,33 +46,7 @@ touch_state_t get_touch_state(trackpad_base_data_t *trackpad_data) {
     return touch_state_touch;
 }
 
-dispatch_button_t dispatch_buttons(int num_of_fingers) {
-    dispatch_button_t temp = {
-        .is_pressed = false,
-        .button_num = POINTING_DEVICE_BUTTON1
-    };
-
-    if (!gr_trackpad_config.tap) {
-        return temp;
-    }
-
-    if ( num_of_fingers > 3 ||
-        (num_of_fingers == 3 && !gr_trackpad_config.three_finger_tap)) {
-        temp.is_pressed = false;
-        return temp;
-    }
-    temp.is_pressed = true;
-    temp.button_num =    (num_of_fingers == 3) ?    POINTING_DEVICE_BUTTON3 :
-                        ((num_of_fingers == 2) ?    POINTING_DEVICE_BUTTON2 :
-                                                    POINTING_DEVICE_BUTTON1);
-    return temp;
-}
-
 void reset_gesture_status(void) {
-    // if (gesture_handle_state.max_fingers != 0) {
-    //     pd_dprintf("reset state.\n");
-    // }
-
     gesture_handle_state.max_fingers = 0;
     gesture_handle_state.swipe_distance_x = 0;
     gesture_handle_state.swipe_distance_y = 0;
