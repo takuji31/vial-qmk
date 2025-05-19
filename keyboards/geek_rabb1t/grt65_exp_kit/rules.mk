@@ -16,6 +16,7 @@ SRC += trackpad/gesture/gr_trackpad65_gesture_fire_strategy.c
 SRC += trackpad/gesture/gr_trackpad65_idle_strategy.c
 SRC += trackpad/gesture/gr_trackpad65_move_strategy.c
 SRC += trackpad/gesture/gr_trackpad65_press_strategy.c
+SRC += trackpad/gesture/gr_trackpad65_scroll_strategy.c
 SRC += trackpad/gesture/gr_trackpad65_state.c
 SRC += trackpad/gesture/gr_trackpad65_strategy_helper.c
 SRC += trackpad/gesture/gr_trackpad65_touch_strategy.c

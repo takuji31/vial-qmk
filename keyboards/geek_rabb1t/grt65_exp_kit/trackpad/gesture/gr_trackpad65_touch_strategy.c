@@ -17,6 +17,7 @@
 #include "gr_trackpad65_touch_strategy.h"
 #include "gr_trackpad65_strategy_helper.h"
 #include "../gr_trackpad65_driver.h"
+#include "../gr_trackpad65_config.h"
 #include "timer.h"
 
 extern trackpad_gesture_handle_state_t gesture_handle_state;
@@ -38,6 +39,9 @@ trackpad_state_t update_touch_state(trackpad_base_data_t *trackpad_data) {
             // pd_dprintf("start gesture: %d fingers.(x,y): (%d, %d)\n",max_fingers,trackpad_data->mouse_report_x, trackpad_data->mouse_report_y);
             gesture_handle_state.gesture_timer = timer_read();
             return trackpad_state_gesture;
+        }
+        if (gr_trackpad_config.scroll_only == true || gesture_handle_state.max_fingers == 2) {
+            return trackpad_state_scroll;
         }
         return trackpad_state_move;
     }

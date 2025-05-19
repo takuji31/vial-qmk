@@ -14,20 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #pragma once
 
-#include "../gr_trackpad65_cursor_corrector.h"
+#include "gr_trackpad65_state.h"
 
-typedef enum {
-    trackpad_state_idle,
-    trackpad_state_touch,
-    trackpad_state_move,
-    trackpad_state_scroll,
-    trackpad_state_gesture,
-    trackpad_state_gesture_fire,
-    trackpad_state_press,
-    trackpad_state_wait,
-} trackpad_state_t;
-
-report_mouse_t trackpad_report(trackpad_base_data_t trackpad_data);
+trackpad_state_t update_scroll_state(trackpad_base_data_t *trackpad_data);
+report_mouse_t scroll_strategy(trackpad_base_data_t *trackpad_data);
