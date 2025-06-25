@@ -19,20 +19,22 @@
 
 typedef enum  {
     cursor_speed = 0,
-    cursor_accel = 1,
-    scroll_speed = 2,
+    scroll_speed = 1,
+    cursor_correct = 2,
     tap_sensitivity = 3,
 
-    reverse_vertical_scroll = 4,
-    reverse_horizontal_scroll = 5,
+    enable_accel = 4,
+    reverse_vertical_scroll = 5,
+    reverse_horizontal_scroll = 6,
 
-    inertia_cursor = 6,
-    inertia_scroll = 7,
-    move_on_edge = 8,
+    inertia_cursor = 7,
+    inertia_scroll = 8,
+    move_on_edge = 9,
 
-    scroll_only = 9,
+    scroll_only = 10,
 
-    rotate = 10
+    rotate = 11
+
 } config_col_t;
 
 
@@ -40,11 +42,11 @@ gr_trackpad65_config_t gr_trackpad_config = {
     .cursor_speed = GRT_SPD_5,
 };
 
-const static int MIN_SPEED = 0;
+const static int MIN_SPEED = 1;
 const static int MAX_SPEED = 9;
 
 int resolve_speed(uint16_t keycode, int defaultValue) {
-    int speed = keycode - GRT_SPD_5;
+    int speed = keycode - GRT_SPD_1 + 1;
     return
         speed < MIN_SPEED ? defaultValue :
         speed > MAX_SPEED ? defaultValue : speed;
@@ -91,18 +93,21 @@ void load_gr_trackpad65_config(uint8_t config_layer, uint8_t config_row, bool al
     configuration_row = config_row;
 
     gr_trackpad_config.cursor_speed    = read_speed(cursor_speed, 5);
-    gr_trackpad_config.cursor_accel    = read_speed(cursor_accel, 5);
     gr_trackpad_config.scroll_speed    = read_speed(scroll_speed, 5);
+
+    gr_trackpad_config.cursor_correct  = read_speed(cursor_correct, 2);
     gr_trackpad_config.tap_sensitivity = read_speed(tap_sensitivity, 5);
+
+    gr_trackpad_config.enable_accel    = read_bool(enable_accel, false);
 
     gr_trackpad_config.reverse_vertical_scroll = read_bool(reverse_vertical_scroll, false);
     gr_trackpad_config.reverse_horizontal_scroll = read_bool(reverse_horizontal_scroll, false);
 
-    gr_trackpad_config.inertia_cursor = read_bool(inertia_cursor, true);
-    gr_trackpad_config.inertia_scroll = read_bool(inertia_scroll, true);
-    gr_trackpad_config.move_on_edge = read_bool(move_on_edge, false);
+    gr_trackpad_config.inertia_cursor  = read_bool(inertia_cursor, true);
+    gr_trackpad_config.inertia_scroll  = read_bool(inertia_scroll, true);
+    gr_trackpad_config.move_on_edge    = read_bool(move_on_edge, false);
 
-    gr_trackpad_config.scroll_only = read_bool(scroll_only, false);
+    gr_trackpad_config.scroll_only     = read_bool(scroll_only, false);
 
     if (allow_rotate) {
         gr_trackpad_config.rotate = read_rotate(rotate, ROTATE_0);

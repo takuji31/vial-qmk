@@ -22,6 +22,7 @@
 #include <math.h>
 #include "gr_trackpad65_config.h"
 #include "gr_trackpad65_cursor_corrector.h"
+#include "debug.h"
 
 #define CONSTRAIN_HID(amt) ((amt) < INT8_MIN ? INT8_MIN : ((amt) > INT8_MAX ? INT8_MAX : (amt)))
 #define CONSTRAIN_HID_XY(amt) ((amt) < XY_REPORT_MIN ? XY_REPORT_MIN : ((amt) > XY_REPORT_MAX ? XY_REPORT_MAX : (amt)))
@@ -150,35 +151,75 @@ void get_finger_delta(azoteq_iqs5xx_base_data_t base_data, position_t *delta) {
     return;
 }
 
-mouse_xy_report_t correct_cursor(int delta, int prev) {
+typedef struct {
+    mouse_xy_report_t mov;
+    int carryover;
+} correct_cursor_result_t;
 
-    int avg = (delta + prev);
-    int ratio = (fmin(abs(avg), 255)) * 15 / 255 + 5;
-    int mov = avg * ratio / 20;
+correct_cursor_result_t correct_cursor(int delta, int prev, int carryover) {
 
-    return (mouse_xy_report_t) CONSTRAIN_HID_XY((int)mov);
+    // 演算誤差を減らすため、割り算は最後に行う。
+    int avg = (delta + prev);// TODO cursor_correctの数分過去データを参照する
+    int mov = 0;
+    int next_carry = 0;
+
+    if (gr_trackpad_config.enable_accel) {
+        int accel = (abs(avg));
+        mov = (carryover + avg * (gr_trackpad_config.cursor_speed) * accel) / (100 * gr_trackpad_config.cursor_correct);
+        next_carry = (carryover + avg * (gr_trackpad_config.cursor_speed * accel)) % (100 * gr_trackpad_config.cursor_correct);
+
+    } else {
+        mov = (carryover + avg * (gr_trackpad_config.cursor_speed)) / (5 * gr_trackpad_config.cursor_correct);
+        next_carry = (carryover + avg * (gr_trackpad_config.cursor_speed)) % (5 * gr_trackpad_config.cursor_correct);
+    }
+
+    correct_cursor_result_t result = {
+        .mov = CONSTRAIN_HID_XY((int)mov),
+        .carryover = next_carry
+    };
+
+    return result;
 }
 
 static position_t prev = {0};
+static position_t carryover = {
+    .x = 0,
+    .y = 0
+};
 
 trackpad_base_data_t cursor_corrector_correct(azoteq_iqs5xx_base_data_t base_data) {
 
     position_t position = {0};
     get_finger_delta(base_data, &position);
 
+    correct_cursor_result_t cursor_x = correct_cursor(position.x, prev.x, carryover.x);
+    correct_cursor_result_t cursor_y = correct_cursor(position.y, prev.y, carryover.y);
+
     trackpad_base_data_t trackpad_data = {
         .pos.x = position.x,
         .pos.y = position.y,
         .prev_pos.x = prev.x,
         .prev_pos.y = prev.y,
-        .mouse_report_x = correct_cursor(position.x, prev.x),
-        .mouse_report_y = correct_cursor(position.y, prev.y),
+
+        .mouse_report_x = cursor_x.mov,
+        .mouse_report_y = cursor_y.mov,
         .touch_strength = get_touch_strength(base_data),
         .num_of_fingers = base_data.number_of_fingers,
     };
 
+    if (position.x != 0 || prev.x != 0) {
+        uprintf("mov: %d, %d, %d, %d \n",
+            cursor_x.mov,
+            position.x,
+            prev.x,
+            cursor_x.carryover);
+    }
+
     prev.x = position.x;
     prev.y = position.y;
+
+    carryover.x = cursor_x.carryover;
+    carryover.y = cursor_y.carryover;
 
     return trackpad_data;
 }

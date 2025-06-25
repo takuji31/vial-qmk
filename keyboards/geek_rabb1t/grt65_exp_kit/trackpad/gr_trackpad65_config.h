@@ -41,9 +41,10 @@ enum GR_TRACKPAD_KEYCODES {
     SCROLL_MODE,
 
     GRTL_CS,
-    GRTL_CA,
     GRTL_SS,
+    GRTL_CC,
     GRTL_TS,
+    GRTL_CA,
     GRTL_RVS,
     GRTL_RHS,
     GRTL_IC,
@@ -70,6 +71,9 @@ typedef struct {
     uint16_t cursor_accel;
     uint16_t scroll_speed;
     uint16_t tap_sensitivity;
+
+    bool enable_accel;
+    uint16_t cursor_correct;
 
     bool reverse_vertical_scroll;
     bool reverse_horizontal_scroll;
