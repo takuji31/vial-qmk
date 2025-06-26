@@ -47,8 +47,6 @@ const static uint16_t FUTABA_MAX_TAP_TIME = 200;
 const static int WAIT_TIME_FOR_CURSOR_MOVEMENT = 100;
 const static int WAIT_TIME_FOR_MULTI_TAP_CURSOR_MOVEMENT = 200;
 
-#define SCROLL_SCALE_PERCENT 5
-
 void reset_trackpad_event(void);
 
 

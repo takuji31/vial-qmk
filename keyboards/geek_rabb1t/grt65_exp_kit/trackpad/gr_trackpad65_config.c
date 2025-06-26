@@ -39,17 +39,17 @@ typedef enum  {
 
 
 gr_trackpad65_config_t gr_trackpad_config = {
-    .cursor_speed = GRT_SPD_5,
+    .cursor_speed = GRT_VAL_5,
 };
 
-const static int MIN_SPEED = 1;
-const static int MAX_SPEED = 9;
+const static int MIN_VALUE = 1;
+const static int MAX_VALUE = 9;
 
-int resolve_speed(uint16_t keycode, int defaultValue) {
-    int speed = keycode - GRT_SPD_1 + 1;
+int resolve_value(uint16_t keycode, int defaultValue) {
+    int value = keycode - GRT_VAL_1 + 1;
     return
-        speed < MIN_SPEED ? defaultValue :
-        speed > MAX_SPEED ? defaultValue : speed;
+        value < MIN_VALUE ? defaultValue :
+        value > MAX_VALUE ? defaultValue : value;
 }
 
 bool resolve_bool(uint16_t keycode, bool defaultValue) {
@@ -73,9 +73,16 @@ rotate_modes_t resolve_rotate(uint16_t keycode, rotate_modes_t defaultValue) {
 static uint8_t configuration_layer = 0;
 static uint8_t configuration_row = 0;
 
-int read_speed(uint8_t col, int defaultValue) {
+int fibonacci_array[] = {1, 1, 2, 3, 5, 8, 13, 21, 34, 55};
+
+int read_value(uint8_t col, int defaultValue) {
     uint16_t keycode = dynamic_keymap_get_keycode(configuration_layer, configuration_row, col);
-    return resolve_speed(keycode, defaultValue);
+    return resolve_value(keycode, defaultValue);
+}
+
+int read_fibonacci_value(uint8_t col, int defaultValue) {
+    uint16_t keycode = dynamic_keymap_get_keycode(configuration_layer, configuration_row, col);
+    return fibonacci_array[resolve_value(keycode, defaultValue)];
 }
 
 bool read_bool(uint8_t col, bool defaultValue) {
@@ -92,11 +99,10 @@ void load_gr_trackpad65_config(uint8_t config_layer, uint8_t config_row, bool al
     configuration_layer = config_layer;
     configuration_row = config_row;
 
-    gr_trackpad_config.cursor_speed    = read_speed(cursor_speed, 5);
-    gr_trackpad_config.scroll_speed    = read_speed(scroll_speed, 5);
+    gr_trackpad_config.cursor_speed    = read_fibonacci_value(cursor_speed, 5);
+    gr_trackpad_config.scroll_speed    = read_fibonacci_value(scroll_speed, 4);
 
-    gr_trackpad_config.cursor_correct  = read_speed(cursor_correct, 2);
-    gr_trackpad_config.tap_sensitivity = read_speed(tap_sensitivity, 5);
+    gr_trackpad_config.cursor_correct  = read_value(cursor_correct, 2);
 
     gr_trackpad_config.enable_accel    = read_bool(enable_accel, false);
 

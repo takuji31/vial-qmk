@@ -18,15 +18,15 @@
 #include QMK_KEYBOARD_H
 
 enum GR_TRACKPAD_KEYCODES {
-    GRT_SPD_1= QK_KB_0,
-    GRT_SPD_2,
-    GRT_SPD_3,
-    GRT_SPD_4,
-    GRT_SPD_5,
-    GRT_SPD_6,
-    GRT_SPD_7,
-    GRT_SPD_8,
-    GRT_SPD_9,
+    GRT_VAL_1= QK_KB_0,
+    GRT_VAL_2,
+    GRT_VAL_3,
+    GRT_VAL_4,
+    GRT_VAL_5,
+    GRT_VAL_6,
+    GRT_VAL_7,
+    GRT_VAL_8,
+    GRT_VAL_9,
 
     GRT_ON,
     GRT_OFF,

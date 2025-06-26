@@ -26,6 +26,9 @@
 
 #define CONSTRAIN_HID(amt) ((amt) < INT8_MIN ? INT8_MIN : ((amt) > INT8_MAX ? INT8_MAX : (amt)))
 #define CONSTRAIN_HID_XY(amt) ((amt) < XY_REPORT_MIN ? XY_REPORT_MIN : ((amt) > XY_REPORT_MAX ? XY_REPORT_MAX : (amt)))
+#define CUROSOR_MIN -1000
+#define CUROSOR_MAX 1000
+#define CONSTRAIN_CURSOR(amt) ((amt) < CUROSOR_MIN ? CUROSOR_MIN : ((amt) > CUROSOR_MAX ? CUROSOR_MAX : (amt)))
 
 typedef struct {
     int x;
@@ -173,12 +176,13 @@ correct_cursor_result_t correct_cursor(int delta, int history[], int carryover) 
         next_carry = (carryover + sum * (gr_trackpad_config.cursor_speed * accel)) % (100 * gr_trackpad_config.cursor_correct);
 
     } else {
-        mov = (carryover + sum * (gr_trackpad_config.cursor_speed)) / (5 * gr_trackpad_config.cursor_correct);
-        next_carry = (carryover + sum * (gr_trackpad_config.cursor_speed)) % (5 * gr_trackpad_config.cursor_correct);
+        int total = (carryover + sum * (gr_trackpad_config.cursor_speed));
+        mov = total / (10 * gr_trackpad_config.cursor_correct);
+        next_carry = total - (mov * 10 * gr_trackpad_config.cursor_correct);
     }
 
     correct_cursor_result_t result = {
-        .mov = CONSTRAIN_HID_XY((int)mov),
+        .mov = CONSTRAIN_HID_XY(CONSTRAIN_CURSOR((int)mov)),
         .carryover = next_carry
     };
 
