@@ -156,21 +156,25 @@ typedef struct {
     int carryover;
 } correct_cursor_result_t;
 
-correct_cursor_result_t correct_cursor(int delta, int prev, int carryover) {
+correct_cursor_result_t correct_cursor(int delta, int history[], int carryover) {
 
-    // 演算誤差を減らすため、割り算は最後に行う。
-    int avg = (delta + prev);// TODO cursor_correctの数分過去データを参照する
     int mov = 0;
     int next_carry = 0;
 
+    // 本当は移動量の平均を求めたいんだけど、演算誤差を減らすため、割り算は後で行う。
+    int sum = delta;
+    for (int i = 0 ; i < gr_trackpad_config.cursor_correct - 1; i++) {
+        sum += history[i];
+    }
+
     if (gr_trackpad_config.enable_accel) {
-        int accel = (abs(avg));
-        mov = (carryover + avg * (gr_trackpad_config.cursor_speed) * accel) / (100 * gr_trackpad_config.cursor_correct);
-        next_carry = (carryover + avg * (gr_trackpad_config.cursor_speed * accel)) % (100 * gr_trackpad_config.cursor_correct);
+        int accel = (abs(sum));
+        mov = (carryover + sum * (gr_trackpad_config.cursor_speed) * accel) / (100 * gr_trackpad_config.cursor_correct);
+        next_carry = (carryover + sum * (gr_trackpad_config.cursor_speed * accel)) % (100 * gr_trackpad_config.cursor_correct);
 
     } else {
-        mov = (carryover + avg * (gr_trackpad_config.cursor_speed)) / (5 * gr_trackpad_config.cursor_correct);
-        next_carry = (carryover + avg * (gr_trackpad_config.cursor_speed)) % (5 * gr_trackpad_config.cursor_correct);
+        mov = (carryover + sum * (gr_trackpad_config.cursor_speed)) / (5 * gr_trackpad_config.cursor_correct);
+        next_carry = (carryover + sum * (gr_trackpad_config.cursor_speed)) % (5 * gr_trackpad_config.cursor_correct);
     }
 
     correct_cursor_result_t result = {
@@ -181,25 +185,36 @@ correct_cursor_result_t correct_cursor(int delta, int prev, int carryover) {
     return result;
 }
 
-static position_t prev = {0};
+#define HISTORY_LENGTH 10
+static int history_x[HISTORY_LENGTH] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static int history_y[HISTORY_LENGTH] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static position_t carryover = {
     .x = 0,
     .y = 0
 };
+
+void update_history(position_t position) {
+    for (int i = HISTORY_LENGTH - 1; i >= 1; i--) {
+        history_x[i] = history_x[i - 1];
+        history_y[i] = history_y[i - 1];
+    }
+    history_x[0] = position.x;
+    history_y[0] = position.y;
+}
 
 trackpad_base_data_t cursor_corrector_correct(azoteq_iqs5xx_base_data_t base_data) {
 
     position_t position = {0};
     get_finger_delta(base_data, &position);
 
-    correct_cursor_result_t cursor_x = correct_cursor(position.x, prev.x, carryover.x);
-    correct_cursor_result_t cursor_y = correct_cursor(position.y, prev.y, carryover.y);
+    correct_cursor_result_t cursor_x = correct_cursor(position.x, history_x, carryover.x);
+    correct_cursor_result_t cursor_y = correct_cursor(position.y, history_y, carryover.y);
 
     trackpad_base_data_t trackpad_data = {
         .pos.x = position.x,
         .pos.y = position.y,
-        .prev_pos.x = prev.x,
-        .prev_pos.y = prev.y,
+        .prev_pos.x = history_x[0],
+        .prev_pos.y = history_y[0],
 
         .mouse_report_x = cursor_x.mov,
         .mouse_report_y = cursor_y.mov,
@@ -207,16 +222,15 @@ trackpad_base_data_t cursor_corrector_correct(azoteq_iqs5xx_base_data_t base_dat
         .num_of_fingers = base_data.number_of_fingers,
     };
 
-    if (position.x != 0 || prev.x != 0) {
+    if (position.x != 0 ||  history_x[0] != 0) {
         uprintf("mov: %d, %d, %d, %d \n",
             cursor_x.mov,
             position.x,
-            prev.x,
+            history_x[0],
             cursor_x.carryover);
     }
 
-    prev.x = position.x;
-    prev.y = position.y;
+    update_history(position);
 
     carryover.x = cursor_x.carryover;
     carryover.y = cursor_y.carryover;
