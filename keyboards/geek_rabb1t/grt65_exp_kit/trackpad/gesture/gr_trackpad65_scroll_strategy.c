@@ -42,8 +42,8 @@ report_mouse_t scroll_strategy(trackpad_base_data_t *trackpad_data) {
         int scroll_dir_x = (gr_trackpad_config.reverse_horizontal_scroll) ? -1 : 1;
         int scroll_dir_y = (gr_trackpad_config.reverse_vertical_scroll  ) ? -1 : 1;
 
-        gesture_handle_state.scroll_rest.x += trackpad_data->pos.x * SCROLL_SCALE_PERCENT;
-        gesture_handle_state.scroll_rest.y += trackpad_data->pos.y * SCROLL_SCALE_PERCENT;
+        gesture_handle_state.scroll_rest.x += trackpad_data->pos.x * gr_trackpad_config.scroll_speed;
+        gesture_handle_state.scroll_rest.y += trackpad_data->pos.y *  gr_trackpad_config.scroll_speed;
         int scroll_x = gesture_handle_state.scroll_rest.x / 100;
         int scroll_y = gesture_handle_state.scroll_rest.y / 100;
         gesture_handle_state.scroll_rest.x -= scroll_x * 100;
