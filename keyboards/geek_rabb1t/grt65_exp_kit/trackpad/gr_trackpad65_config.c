@@ -21,19 +21,18 @@ typedef enum  {
     cursor_speed = 0,
     scroll_speed = 1,
     cursor_correct = 2,
-    tap_sensitivity = 3,
 
-    enable_accel = 4,
-    reverse_vertical_scroll = 5,
-    reverse_horizontal_scroll = 6,
+    enable_accel = 3,
+    reverse_vertical_scroll = 4,
+    reverse_horizontal_scroll = 5,
 
-    inertia_cursor = 7,
-    inertia_scroll = 8,
-    move_on_edge = 9,
+    inertia_cursor = 6,
+    inertia_scroll = 7,
+    move_on_edge = 8,
 
-    scroll_only = 10,
+    scroll_only = 9,
 
-    rotate = 11
+    rotate = 10
 
 } config_col_t;
 

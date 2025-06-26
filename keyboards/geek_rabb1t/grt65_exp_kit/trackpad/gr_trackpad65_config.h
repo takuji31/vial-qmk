@@ -40,10 +40,10 @@ enum GR_TRACKPAD_KEYCODES {
     LOW_SPEED,
     SCROLL_MODE,
 
+    // Label use only.
     GRTL_CS,
     GRTL_SS,
     GRTL_CC,
-    GRTL_TS,
     GRTL_CA,
     GRTL_RVS,
     GRTL_RHS,
@@ -70,7 +70,6 @@ typedef struct {
     uint16_t cursor_speed;
     uint16_t cursor_accel;
     uint16_t scroll_speed;
-    uint16_t tap_sensitivity;
 
     bool enable_accel;
     uint16_t cursor_correct;
@@ -86,7 +85,6 @@ typedef struct {
 
     rotate_modes_t rotate;
 } gr_trackpad65_config_t;
-
 
 
 extern gr_trackpad65_config_t gr_trackpad_config;

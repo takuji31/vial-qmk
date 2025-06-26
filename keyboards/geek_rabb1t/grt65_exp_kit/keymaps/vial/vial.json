@@ -3,49 +3,49 @@
     "lighting": "none",
     "customKeycodes": [
 	    {
-            "shortName": "SPD1",
-	        "title": "Lower Speed.",
-	        "name": "GRT_SPD_1"
+            "shortName": "Val_1",
+	        "title": "value 1.",
+	        "name": "GRT_VAL_1"
     	},
 	    {
-            "shortName": "SPD2",
-	        "title": "Low Speed.",
-	        "name": "GRT_SPD_2"
+            "shortName": "Val_2",
+	        "title": "Value 2.",
+	        "name": "GRT_VAL_2"
     	},
 	    {
-            "shortName": "SPD3",
-	        "title": "Lowest Speed.",
-	        "name": "GRT_SPD_3"
+            "shortName": "Val_3",
+	        "title": "Value 3.",
+	        "name": "GRT_VAL_3"
     	},
 	    {
-            "shortName": "SPD4",
-	        "title": "Lowest Speed.",
-	        "name": "GRT_SPD_4"
+            "shortName": "Val_4",
+	        "title": "Value 4.",
+	        "name": "GRT_VAL_4"
     	},
 	    {
-            "shortName": "SPD5",
-	        "title": "Lowest Speed.",
-	        "name": "GRT_SPD_5"
+            "shortName": "Val_5",
+	        "title": "Value 5.",
+	        "name": "GRT_VAL_5"
     	},
 	    {
-            "shortName": "SPD6",
-	        "title": "Lowest Speed.",
-	        "name": "GRT_SPD_6"
+            "shortName": "Val_6",
+	        "title": "Value 7.",
+	        "name": "GRT_VAL_6"
     	},
 	    {
-            "shortName": "SPD7",
-	        "title": "Lowest Speed.",
-	        "name": "GRT_SPD_7"
+            "shortName": "Val_7",
+	        "title": "Value 7.",
+	        "name": "GRT_VAL_7"
     	},
 	    {
-            "shortName": "SPD8",
-	        "title": "Lowest Speed.",
-	        "name": "GRT_SPD_8"
+            "shortName": "Val_8",
+	        "title": "Value 8.",
+	        "name": "GRT_VAL_8"
     	},
 	    {
-            "shortName": "SPD9",
-	        "title": "Highest Speed.",
-	        "name": "GRT_SPD_9"
+            "shortName": "Val_9",
+	        "title": "Value 9.",
+	        "name": "GRT_VAL_9"
     	},
 
 	    {
@@ -98,26 +98,21 @@
 
         {
             "shortName": "Cursor Speed",
-	        "title": "Select SPD0 to SPD9.",
+	        "title": "Select V1 to V9.",
 	        "name": "GRTL_CS"
     	},
         {
             "shortName": "Scroll Speed",
-	        "title": "Select SPD0 to SPD9.",
+	        "title": "Select V1 to V9.",
 	        "name": "GRTL_SS"
     	},
         {
-            "shortName": "Cursor Correction",
-	        "title": "Select SPD0 to SPD9.",
+            "shortName": "Cursor\nCorrection",
+	        "title": "Select V1 to V9.",
 	        "name": "GRTL_CC"
     	},
         {
-            "shortName": "Touch Sense",
-	        "title": "Select SPD0 to SPD9.",
-	        "name": "GRTL_TS"
-    	},
-        {
-            "shortName": "Cursor Acceleration",
+            "shortName": "Cursor\nAcceleration",
 	        "title": "Only ON / OFF is allowed.",
 	        "name": "GRTL_CA"
     	},
@@ -179,7 +174,7 @@
     ],
     "matrix": {
         "rows": 8,
-        "cols": 12
+        "cols": 11
     },
     "layouts": {
         "keymap":[
@@ -202,23 +197,32 @@
     },
     "3,1",
     {
-      "x": 3,
-      "w": 3
+      "x": 2.25,
+      "w": 2.5
+    },
+    "7,0\n\n\n\n\n\n\n\n\nTap",
+    {
+      "w": 1.5
+    },
+    "1,0",
+    {
+      "x": 1,
+      "w": 2.5
     },
     "5,0\n\n\n\n\n\n\n\n\nCursor_Speed",
     {
-      "w": 2
+      "w": 1.5
     },
     "6,0",
     {
       "x": 1,
-      "w": 3
+      "w": 2.5
     },
-    "5,4\n\n\n\n\n\n\n\n\nCursor_Accel",
+    "5,1\n\n\n\n\n\n\n\n\nScroll_Speed",
     {
-      "w": 2
+      "w": 1.5
     },
-    "6,4"
+    "6,1"
   ],
   [
     {
@@ -237,29 +241,56 @@
     },
     "3,3",
     {
-      "x": 3,
-      "w": 3
+      "x": 2.25,
+      "w": 2.5
     },
-    "5,1\n\n\n\n\n\n\n\n\nScroll_Speed",
+    "7,1\n\n\n\n\n\n\n\n\n2Finger Tap",
     {
-      "w": 2
+      "w": 1.5
     },
-    "6,1"
+    "2,0",
+    {
+      "x": 1,
+      "w": 2.5
+    },
+    "5,3\n\n\n\n\n\n\n\n\nCursor_Accel",
+    {
+      "w": 1.5
+    },
+    "6,3",
+    {
+      "x": 1,
+      "w": 2.5
+    },
+    "5,4\n\n\n\n\n\n\n\n\nReverseVerticalScroll",
+    {
+      "w": 1.5
+    },
+    "6,4"
   ],
   [
     {
-      "y": -0.5,
-      "x": 11,
-      "w": 3
+      "x": 4.25,
+      "w": 2.5
     },
-    "5,5\n\n\n\n\n\n\n\n\nReverseVerticalScroll",
+    "7,2\n\n\n\n\n\n\n\n\n3Finger Tap",
     {
-      "w": 2
+      "w": 1.5
+    },
+    "3,0",
+    {
+      "x": 6,
+      "w": 2.5
+    },
+    "5,5\n\n\n\n\n\n\n\n\nReverseHorizontalScroll",
+    {
+      "w": 1.5
     },
     "6,5"
   ],
   [
     {
+      "y": -0.5,
       "a": 6,
       "f": 6,
       "w": 3,
@@ -268,23 +299,14 @@
     },
     "4 fingers gesture",
     {
-      "x": 2,
+      "x": 6.25,
       "a": 4,
       "f": 3,
-      "w": 3
+      "w": 2.5
     },
-    "5,2\n\n\n\n\n\n\n\n\nCursorCorrection",
+    "5,6\n\n\n\n\n\n\n\n\nInertiaCursor",
     {
-      "w": 2
-    },
-    "6,2",
-    {
-      "x": 1,
-      "w": 3
-    },
-    "5,6\n\n\n\n\n\n\n\n\nReverseHorizontalScroll",
-    {
-      "w": 2
+      "w": 1.5
     },
     "6,6"
   ],
@@ -293,7 +315,16 @@
       "y": -0.5,
       "x": 1
     },
-    "4,1"
+    "4,1",
+    {
+      "x": 2.25,
+      "w": 2.5
+    },
+    "7,3\n\n\n\n\n\n\n\n\n4Finger Tap",
+    {
+      "w": 1.5
+    },
+    "4,0"
   ],
   [
     {
@@ -305,125 +336,64 @@
     },
     "4,2",
     {
-      "x": 2,
-      "w": 3
+      "x": 6.25,
+      "w": 2.5
     },
-    "5,3\n\n\n\n\n\n\n\n\nTouch_Sense",
+    "5,8\n\n\n\n\n\n\n\n\nMoveOnEdge",
     {
-      "w": 2
+      "w": 1.5
     },
-    "6,3"
+    "6,8",
+    {
+      "x": 1,
+      "w": 2.5
+    },
+    "5,7\n\n\n\n\n\n\n\n\nInertiaScroll",
+    {
+      "w": 1.5
+    },
+    "6,7"
   ],
   [
     {
       "y": -0.5,
       "x": 1
     },
-    "4,3",
-    {
-      "x": 9,
-      "w": 3
-    },
-    "5,7\n\n\n\n\n\n\n\n\nInertiaCursor",
-    {
-      "w": 2
-    },
-    "6,7"
+    "4,3"
   ],
   [
     {
-      "x": 11,
-      "w": 3
+      "x": 4.25,
+      "w": 2.5
     },
-    "5,8\n\n\n\n\n\n\n\n\nInertiaScroll",
+    "5,10\n\n\n\n\n\n\n\n\nRotate",
     {
-      "w": 2
+      "w": 1.5
     },
-    "6,8"
-  ],
-  [
+    "6,10",
     {
-      "y": -0.5,
-      "x": 5,
-      "w": 3
+      "x": 1,
+      "w": 2.5
     },
-    "7,0\n\n\n\n\n\n\n\n\nTap",
+    "5,2\n\n\n\n\n\n\n\n\nCursorCorrection",
     {
-      "w": 2
+      "w": 1.5
     },
-    "1,0"
-  ],
-  [
+    "6,2",
     {
-      "y": -0.5
+      "x": 1,
+      "w": 2.5
     },
-    "0,0",
-    "0,1",
-    "0,2",
+    "5,9\n\n\n\n\n\n\n\n\nScrollOnly",
     {
-      "x": 8,
-      "w": 3
-    },
-    "5,9\n\n\n\n\n\n\n\n\nMoveOnEdge",
-    {
-      "w": 2
+      "w": 1.5
     },
     "6,9"
   ],
   [
-    {
-      "y": -0.5,
-      "x": 5,
-      "w": 3
-    },
-    "7,1\n\n\n\n\n\n\n\n\n2Finger Tap",
-    {
-      "w": 2
-    },
-    "2,0"
-  ],
-  [
-    {
-      "x": 5,
-      "w": 3
-    },
-    "7,2\n\n\n\n\n\n\n\n\n3Finger Tap",
-    {
-      "w": 2
-    },
-    "3,0",
-    {
-      "x": 1,
-      "w": 3
-    },
-    "5,10\n\n\n\n\n\n\n\n\nScrollOnly",
-    {
-      "w": 2
-    },
-    "6,10"
-  ],
-  [
-    {
-      "x": 5,
-      "w": 3
-    },
-    "7,3\n\n\n\n\n\n\n\n\n4Finger Tap",
-    {
-      "w": 2
-    },
-    "4,0"
-  ],
-  [
-    {
-      "y": -0.5,
-      "x": 11,
-      "w": 3
-    },
-    "5,11\n\n\n\n\n\n\n\n\nRotate",
-    {
-      "w": 2
-    },
-    "6,11"
+    "0,0",
+    "0,1",
+    "0,2"
   ]
 ]
     }

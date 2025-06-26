@@ -73,7 +73,6 @@ bool process_record_trackpad(uint16_t keycode, keyrecord_t *record) {
     uprintf("cursor_speed: %u\n", gr_trackpad_config.cursor_speed);
     uprintf("enable_accel: %u\n", gr_trackpad_config.enable_accel);
     uprintf("scroll_speed: %u\n", gr_trackpad_config.scroll_speed);
-    uprintf("tap_sensitivity: %u\n", gr_trackpad_config.tap_sensitivity);
     uprintf("cursor_correct: %u\n", gr_trackpad_config.cursor_correct);
 
     uprintf("reverse_vertical_scroll: %u\n", gr_trackpad_config.reverse_vertical_scroll);
@@ -92,7 +91,6 @@ bool process_record_trackpad(uint16_t keycode, keyrecord_t *record) {
     return process_record_user(keycode, record);
 }
 
-// uint8_t[] finger_gesture_row;
 void keyboard_post_init_trackpad(trackpad_matrix_config_t config) {
 
     for (int i = 0; i < MAX_FINGERS; i++) {
