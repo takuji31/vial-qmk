@@ -15,7 +15,7 @@
  */
 
 #include "quantum.h"
-#include "trackpad/gr_trackpad65.h"
+#include "../trackpad/gr_trackpad65.h"
 
 void matrix_scan_kb(void) {
     matrix_scan_trackpad();
