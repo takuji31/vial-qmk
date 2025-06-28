@@ -28,7 +28,12 @@ trackpad_state_t update_scroll_state(trackpad_base_data_t *trackpad_data) {
     touch_state_t touch_state = get_touch_state(trackpad_data);
 
     if (touch_state == touch_state_none) {
-        return trackpad_state_idle;
+        if (gr_trackpad_config.inertia_cursor) {
+            uprintf("next state: inertia cursor \n");
+            return trackpad_state_inertia_scroll;
+        } else {
+            return trackpad_state_idle;
+        }
     }
 
     return trackpad_state_scroll;
@@ -38,52 +43,49 @@ trackpad_state_t update_scroll_state(trackpad_base_data_t *trackpad_data) {
 report_mouse_t scroll_strategy(trackpad_base_data_t *trackpad_data) {
     report_mouse_t temp_report = {0};
 
+    int scroll_dir_x = (gr_trackpad_config.reverse_horizontal_scroll) ? -1 : 1;
+    int scroll_dir_y = (gr_trackpad_config.reverse_vertical_scroll  ) ? -1 : 1;
 
-        int scroll_dir_x = (gr_trackpad_config.reverse_horizontal_scroll) ? -1 : 1;
-        int scroll_dir_y = (gr_trackpad_config.reverse_vertical_scroll  ) ? -1 : 1;
+    gesture_handle_state.scroll_rest.x += trackpad_data->pos.x * gr_trackpad_config.scroll_speed;
+    gesture_handle_state.scroll_rest.y += trackpad_data->pos.y *  gr_trackpad_config.scroll_speed;
+    int scroll_x = gesture_handle_state.scroll_rest.x / 100;
+    int scroll_y = gesture_handle_state.scroll_rest.y / 100;
+    gesture_handle_state.scroll_rest.x -= scroll_x * 100;
+    gesture_handle_state.scroll_rest.y -= scroll_y * 100;
 
-        gesture_handle_state.scroll_rest.x += trackpad_data->pos.x * gr_trackpad_config.scroll_speed;
-        gesture_handle_state.scroll_rest.y += trackpad_data->pos.y *  gr_trackpad_config.scroll_speed;
-        int scroll_x = gesture_handle_state.scroll_rest.x / 100;
-        int scroll_y = gesture_handle_state.scroll_rest.y / 100;
-        gesture_handle_state.scroll_rest.x -= scroll_x * 100;
-        gesture_handle_state.scroll_rest.y -= scroll_y * 100;
-
-        // Restrict scroll direction.
-        if (gesture_handle_state.scroll_direction == scroll_direction_tbd) {
-            if (scroll_x == 0 && scroll_y == 0) {
-                return temp_report;
-            }
-            if (abs(scroll_y) > abs(scroll_x) * 2) {
-                gesture_handle_state.scroll_direction = scroll_direction_vertical;
-            } else if (abs(scroll_x) > abs(scroll_y) *2) {
-                gesture_handle_state.scroll_direction = scroll_direction_horizontal;
-            } else {
-                gesture_handle_state.scroll_direction = scroll_direction_both;
-            }
-
+    // Restrict scroll direction.
+    if (gesture_handle_state.scroll_direction == scroll_direction_tbd) {
+        if (scroll_x == 0 && scroll_y == 0) {
             return temp_report;
         }
+        if (abs(scroll_y) > abs(scroll_x) * 2) {
+            gesture_handle_state.scroll_direction = scroll_direction_vertical;
+        } else if (abs(scroll_x) > abs(scroll_y) *2) {
+            gesture_handle_state.scroll_direction = scroll_direction_horizontal;
+        } else {
+            gesture_handle_state.scroll_direction = scroll_direction_both;
+        }
+        return temp_report;
+    }
 
-        // Remove restrictions on scroll direction.
-        if (abs(trackpad_data->pos.y) > abs(trackpad_data->pos.x) * 2  && abs(trackpad_data->prev_pos.y) > abs(trackpad_data->prev_pos.x) * 2) {
-            if (gesture_handle_state.scroll_direction == scroll_direction_horizontal) {
-                gesture_handle_state.scroll_direction = scroll_direction_both;
-            }
-
-        } else if (abs(trackpad_data->pos.x) > abs(trackpad_data->pos.y) * 2  && abs(trackpad_data->prev_pos.x) > abs(trackpad_data->prev_pos.y) * 2) {
-            if (gesture_handle_state.scroll_direction == scroll_direction_vertical) {
-                gesture_handle_state.scroll_direction = scroll_direction_both;
-            }
+    // Remove restrictions on scroll direction.
+    if (abs(trackpad_data->pos.y) > abs(trackpad_data->pos.x) * 2  && abs(trackpad_data->prev_pos.y) > abs(trackpad_data->prev_pos.x) * 2) {
+        if (gesture_handle_state.scroll_direction == scroll_direction_horizontal) {
+            gesture_handle_state.scroll_direction = scroll_direction_both;
         }
 
-        if (gesture_handle_state.scroll_direction == scroll_direction_vertical || gesture_handle_state.scroll_direction == scroll_direction_both) {
-            temp_report.v = CONSTRAIN_HID(scroll_y * scroll_dir_y);
+    } else if (abs(trackpad_data->pos.x) > abs(trackpad_data->pos.y) * 2  && abs(trackpad_data->prev_pos.x) > abs(trackpad_data->prev_pos.y) * 2) {
+        if (gesture_handle_state.scroll_direction == scroll_direction_vertical) {
+            gesture_handle_state.scroll_direction = scroll_direction_both;
         }
-        if (gesture_handle_state.scroll_direction == scroll_direction_horizontal || gesture_handle_state.scroll_direction == scroll_direction_both) {
-            temp_report.h = CONSTRAIN_HID(scroll_x * scroll_dir_x);
-        }
+    }
 
+    if (gesture_handle_state.scroll_direction == scroll_direction_vertical || gesture_handle_state.scroll_direction == scroll_direction_both) {
+        temp_report.v = CONSTRAIN_HID(scroll_y * scroll_dir_y);
+    }
+    if (gesture_handle_state.scroll_direction == scroll_direction_horizontal || gesture_handle_state.scroll_direction == scroll_direction_both) {
+        temp_report.h = CONSTRAIN_HID(scroll_x * scroll_dir_x);
+    }
 
     return temp_report;
 }

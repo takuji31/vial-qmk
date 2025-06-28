@@ -192,6 +192,11 @@ correct_cursor_result_t correct_cursor(int delta, int history[], int carryover) 
 #define HISTORY_LENGTH 10
 static int history_x[HISTORY_LENGTH] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static int history_y[HISTORY_LENGTH] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+static position_t prev_report = {
+    .x = 0,
+    .y = 0
+};
 static position_t carryover = {
     .x = 0,
     .y = 0
@@ -222,6 +227,8 @@ trackpad_base_data_t cursor_corrector_correct(azoteq_iqs5xx_base_data_t base_dat
 
         .mouse_report_x = cursor_x.mov,
         .mouse_report_y = cursor_y.mov,
+        .prev_report_x = prev_report.x,
+        .prev_report_y = prev_report.y,
         .touch_strength = get_touch_strength(base_data),
         .num_of_fingers = base_data.number_of_fingers,
     };
@@ -236,6 +243,8 @@ trackpad_base_data_t cursor_corrector_correct(azoteq_iqs5xx_base_data_t base_dat
 
     update_history(position);
 
+    prev_report.x = cursor_x.mov;
+    prev_report.y = cursor_y.mov;
     carryover.x = cursor_x.carryover;
     carryover.y = cursor_y.carryover;
 

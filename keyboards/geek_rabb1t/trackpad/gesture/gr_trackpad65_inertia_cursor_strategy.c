@@ -24,28 +24,43 @@
 
 extern trackpad_gesture_handle_state_t gesture_handle_state;
 
-trackpad_state_t update_move_state(trackpad_base_data_t *trackpad_data) {
+#define MAX_INERTIA_CYCLE 20
+#define INERTIA_THREDSHOLD 30
+static int cycle = 0;
+
+static position_t inertia = {0};
+
+trackpad_state_t update_inertia_cursor_state(trackpad_base_data_t *trackpad_data) {
     touch_state_t touch_state = get_touch_state(trackpad_data);
 
     if (touch_state == touch_state_none) {
-        if (gr_trackpad_config.inertia_cursor) {
-                uprintf("next state: inertia cursor \n");
-            return trackpad_state_inertia_cursor;
-        } else {
+        cycle = cycle % MAX_INERTIA_CYCLE;
+        if (cycle == 0) {
             return trackpad_state_idle;
         }
+    } else {
+        cycle = 0;
+        return update_idle_state(trackpad_data);
     }
-
-    return trackpad_state_move;
+    return trackpad_state_inertia_cursor;
 }
 
 
-report_mouse_t move_strategy(trackpad_base_data_t *trackpad_data) {
+report_mouse_t inertia_cursor_strategy(trackpad_base_data_t *trackpad_data) {
     report_mouse_t temp_report = {0};
 
-    gesture_handle_state.scroll_direction = scroll_direction_tbd;
-    temp_report.x = trackpad_data->mouse_report_x;
-    temp_report.y = trackpad_data->mouse_report_y;
+    if (cycle == 0) {
+        inertia.x = trackpad_data->prev_report_x;
+        inertia.y = trackpad_data->prev_report_y;
+
+        if (abs(inertia.x) <= INERTIA_THREDSHOLD  && abs(inertia.y) <= INERTIA_THREDSHOLD) {
+            return temp_report;
+        }
+    }
+
+    temp_report.x = inertia.x - (inertia.x * cycle / MAX_INERTIA_CYCLE);
+    temp_report.y = inertia.y - (inertia.y * cycle / MAX_INERTIA_CYCLE);
+    cycle++;
 
     return temp_report;
 }

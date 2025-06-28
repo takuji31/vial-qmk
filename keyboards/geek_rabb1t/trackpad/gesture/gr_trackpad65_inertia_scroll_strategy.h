@@ -14,26 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #pragma once
 
-#include "azoteq_iqs5xx.h"
+#include "gr_trackpad65_state.h"
 
-typedef struct {
-    int x;
-    int y;
-} position_t;
-
-typedef struct {
-    position_t pos;
-    position_t prev_pos;
-    mouse_xy_report_t mouse_report_x;
-    mouse_xy_report_t mouse_report_y;
-    mouse_xy_report_t prev_report_x;
-    mouse_xy_report_t prev_report_y;
-    int touch_strength;
-    int num_of_fingers;
-} trackpad_base_data_t;
-
-
-trackpad_base_data_t cursor_corrector_correct(azoteq_iqs5xx_base_data_t base_data);
+trackpad_state_t update_inertia_scroll_state(trackpad_base_data_t *trackpad_data);
+report_mouse_t inertia_scroll_strategy(trackpad_base_data_t *trackpad_data);

@@ -20,7 +20,9 @@
 #include "gr_trackpad65_idle_strategy.h"
 #include "gr_trackpad65_touch_strategy.h"
 #include "gr_trackpad65_move_strategy.h"
+#include "gr_trackpad65_inertia_cursor_strategy.h"
 #include "gr_trackpad65_scroll_strategy.h"
+#include "gr_trackpad65_inertia_scroll_strategy.h"
 #include "gr_trackpad65_gesture_strategy.h"
 #include "gr_trackpad65_gesture_fire_strategy.h"
 #include "gr_trackpad65_press_strategy.h"
@@ -33,7 +35,9 @@ report_mouse_t (*find_strategy(trackpad_state_t state))(trackpad_base_data_t *) 
         case trackpad_state_idle: return idle_strategy;
         case trackpad_state_touch: return touch_strategy;
         case trackpad_state_move: return move_strategy;
+        case trackpad_state_inertia_cursor: return inertia_cursor_strategy;
         case trackpad_state_scroll: return scroll_strategy;
+        case trackpad_state_inertia_scroll: return inertia_scroll_strategy;
         case trackpad_state_gesture: return gesture_strategy;
         case trackpad_state_gesture_fire: return gesture_fire_strategy;
         case trackpad_state_press: return press_strategy;
@@ -47,7 +51,9 @@ trackpad_state_t (*update_state_strategy(trackpad_state_t prev_state))(trackpad_
         case trackpad_state_idle: return update_idle_state;
         case trackpad_state_touch: return update_touch_state;
         case trackpad_state_move: return update_move_state;
+        case trackpad_state_inertia_cursor: return update_inertia_cursor_state;
         case trackpad_state_scroll: return update_scroll_state;
+        case trackpad_state_inertia_scroll: return update_inertia_scroll_state;
         case trackpad_state_gesture: return update_gesture_state;
         case trackpad_state_gesture_fire: return update_gesture_fire_state;
         case trackpad_state_press: return update_press_state;
