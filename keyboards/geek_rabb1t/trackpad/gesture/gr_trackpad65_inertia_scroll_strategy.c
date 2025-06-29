@@ -24,8 +24,10 @@
 
 extern trackpad_gesture_handle_state_t gesture_handle_state;
 
-#define MAX_INERTIA_CYCLE 40
+#define MAX_DELTA 10
+#define MIN_INERTIA_CYCLE 40
 static int cycle = 0;
+static int max_cycle = MIN_INERTIA_CYCLE;
 
 static position_t inertia = {0};
 
@@ -33,14 +35,14 @@ trackpad_state_t update_inertia_scroll_state(trackpad_base_data_t *trackpad_data
     touch_state_t touch_state = get_touch_state(trackpad_data);
 
     if (touch_state == touch_state_none) {
-        cycle = cycle % MAX_INERTIA_CYCLE;
+        cycle = cycle % max_cycle;
         if (cycle == 0) {
             return trackpad_state_idle;
         }
     } else {
         cycle = 0;
+        reset_gesture_status();
         return update_idle_state(trackpad_data);
-
     }
 
     return trackpad_state_inertia_scroll;
@@ -67,10 +69,12 @@ report_mouse_t inertia_scroll_strategy(trackpad_base_data_t *trackpad_data) {
         if (inertia.x == 0  && inertia.y == 0) {
             return temp_report;
         }
+
+        max_cycle = MAX((MAX(abs(inertia.x), abs(inertia.y)) / MAX_DELTA), MIN_INERTIA_CYCLE);
     }
 
-    temp_report.h = CONSTRAIN_HID((inertia.x - (inertia.x * cycle / MAX_INERTIA_CYCLE))/100);
-    temp_report.v = CONSTRAIN_HID((inertia.y - (inertia.y * cycle / MAX_INERTIA_CYCLE))/100);
+    temp_report.h = CONSTRAIN_HID((inertia.x - (inertia.x * cycle / max_cycle))/100);
+    temp_report.v = CONSTRAIN_HID((inertia.y - (inertia.y * cycle / max_cycle))/100);
     cycle++;
 
     return temp_report;
