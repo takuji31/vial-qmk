@@ -3,47 +3,47 @@
     "lighting": "none",
     "customKeycodes": [
 	    {
-            "shortName": "Val_1",
+            "shortName": "Val\n1",
 	        "title": "value 1.",
 	        "name": "GRT_VAL_1"
     	},
 	    {
-            "shortName": "Val_2",
+            "shortName": "Val\n2",
 	        "title": "Value 2.",
 	        "name": "GRT_VAL_2"
     	},
 	    {
-            "shortName": "Val_3",
+            "shortName": "Val\n3",
 	        "title": "Value 3.",
 	        "name": "GRT_VAL_3"
     	},
 	    {
-            "shortName": "Val_4",
+            "shortName": "Val\n4",
 	        "title": "Value 4.",
 	        "name": "GRT_VAL_4"
     	},
 	    {
-            "shortName": "Val_5",
+            "shortName": "Val\n5",
 	        "title": "Value 5.",
 	        "name": "GRT_VAL_5"
     	},
 	    {
-            "shortName": "Val_6",
+            "shortName": "Val\n6",
 	        "title": "Value 7.",
 	        "name": "GRT_VAL_6"
     	},
 	    {
-            "shortName": "Val_7",
+            "shortName": "Val\n7",
 	        "title": "Value 7.",
 	        "name": "GRT_VAL_7"
     	},
 	    {
-            "shortName": "Val_8",
+            "shortName": "Val\n8",
 	        "title": "Value 8.",
 	        "name": "GRT_VAL_8"
     	},
 	    {
-            "shortName": "Val_9",
+            "shortName": "Val\n9",
 	        "title": "Value 9.",
 	        "name": "GRT_VAL_9"
     	},
@@ -82,17 +82,17 @@
 
 	    {
             "shortName": "CHi",
-	        "title": "Double cursor speed.",
+	        "title": "Double cursor speed while pressing.",
 	        "name": "HIGH_SPEED"
     	},
 	    {
             "shortName": "CLw",
-	        "title": "Half cursor speed.",
+	        "title": "Half cursor speed while pressing.",
 	        "name": "LOW_SPEED"
     	},
         {
-            "shortName": "ScrollMode",
-	        "title": "Toggle vertical scroll direction.",
+            "shortName": "Scroll\nMode",
+	        "title": "While pressed, it scrolls instead of cursor.",
 	        "name": "SCROLL_MODE"
     	},
 
