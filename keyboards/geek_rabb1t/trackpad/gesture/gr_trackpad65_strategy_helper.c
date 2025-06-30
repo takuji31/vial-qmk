@@ -40,7 +40,7 @@ int8_t calc_max_fingers(int8_t current, int8_t previous) {
 touch_state_t get_touch_state(trackpad_base_data_t *trackpad_data) {
     if (trackpad_data->touch_strength == 0) {
         return touch_state_none;
-    } else if (trackpad_data->touch_strength >= FUTABA_TAP_STRENGTH_THRESHOLD) {
+    } else if (trackpad_data->touch_strength >= GR_TRACKPAD65_TAP_STRENGTH_THRESHOLD) {
         return touch_state_press;
     }
     return touch_state_touch;

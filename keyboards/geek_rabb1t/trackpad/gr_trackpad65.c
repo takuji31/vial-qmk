@@ -33,7 +33,7 @@ static uint16_t gesture_release_timer = 0;
 void matrix_scan_trackpad(void) {
 
     // リリースする前に他のジェスチャが発火するとバグるのでは？
-    // キューに入れて処理すればいいけど、たぶんそんなに発生しないので後回し。
+    // キューに入れて処理すればいいけど、たぶん発生しないので後回し。
     if (trackpad_event.type == trackpad_event_none) {
         if (need_release) {
             action_exec(MAKE_KEYEVENT(prev_gesture.row, prev_gesture.col, false));
@@ -62,9 +62,32 @@ void matrix_scan_trackpad(void) {
     }
 
     matrix_scan_user();
- }
+}
+
+
+typedef enum  {
+    SPEED_MODE_LOW,
+    SPEED_MODE_NORMAL,
+    SPEED_MODE_HIGH
+} speed_mode_t;
+
+static speed_mode_t speed_mode = SPEED_MODE_NORMAL;
+
+#define LOW_SPEED_RATIO 2
+#define HIGH_SPEED_RATIO 2
+#define CONSTRAIN_HID_XY(amt) ((amt) < XY_REPORT_MIN ? XY_REPORT_MIN : ((amt) > XY_REPORT_MAX ? XY_REPORT_MAX : (amt)))
 
 report_mouse_t pointing_device_task_trackpad(report_mouse_t mouse_report) {
+    if (speed_mode == SPEED_MODE_LOW) {
+        mouse_report.x = CONSTRAIN_HID_XY(mouse_report.x / LOW_SPEED_RATIO);
+        mouse_report.y = CONSTRAIN_HID_XY(mouse_report.y / LOW_SPEED_RATIO);
+    }
+
+    if (speed_mode == SPEED_MODE_HIGH) {
+        mouse_report.x = CONSTRAIN_HID_XY(mouse_report.x * HIGH_SPEED_RATIO);
+        mouse_report.y = CONSTRAIN_HID_XY(mouse_report.y * HIGH_SPEED_RATIO);
+    }
+
     return pointing_device_task_user(mouse_report);
 }
 
@@ -87,6 +110,34 @@ bool process_record_trackpad(uint16_t keycode, keyrecord_t *record) {
     uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
 
 
+    switch (keycode) {
+        case HIGH_SPEED:
+        if (record->event.pressed) {
+            speed_mode = SPEED_MODE_HIGH;
+        } else {
+            speed_mode = SPEED_MODE_NORMAL;
+        }
+        break;
+
+        case LOW_SPEED:
+        if (record->event.pressed) {
+            speed_mode = SPEED_MODE_LOW;
+        } else {
+            speed_mode = SPEED_MODE_NORMAL;
+        }
+        break;
+
+        case SCROLL_MODE:
+        if (record->event.pressed) {
+            gr_trackpad_config.scroll_mode = !gr_trackpad_config.scroll_only;
+        } else {
+            gr_trackpad_config.scroll_mode = gr_trackpad_config.scroll_only;
+        }
+        break;
+
+        default:
+        break;
+    }
 
     return process_record_user(keycode, record);
 }

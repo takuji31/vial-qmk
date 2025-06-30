@@ -45,10 +45,10 @@ report_mouse_t gesture_fire_strategy(trackpad_base_data_t *trackpad_data) {
     // dispatch swipe gesture
     // pd_dprintf("gesture: %d fingers.(%d, %d)\n",max_fingers, swipe_distance_x, swipe_distance_y);
     gesture_handle_state.swipe_distance_x =
-        abs(gesture_handle_state.swipe_distance_x) >= FUTABA_SWIPE_THRESHOLD_PIXEL ?
+        abs(gesture_handle_state.swipe_distance_x) >= GR_TRACKPAD65_SWIPE_THRESHOLD_PIXEL ?
             gesture_handle_state.swipe_distance_x : 0;
     gesture_handle_state.swipe_distance_y =
-        abs(gesture_handle_state.swipe_distance_y) >= FUTABA_SWIPE_THRESHOLD_PIXEL ?
+        abs(gesture_handle_state.swipe_distance_y) >= GR_TRACKPAD65_SWIPE_THRESHOLD_PIXEL ?
             gesture_handle_state.swipe_distance_y : 0;
     if (gesture_handle_state.swipe_distance_x == 0 && gesture_handle_state.swipe_distance_y == 0) {
         reset_trackpad_event();

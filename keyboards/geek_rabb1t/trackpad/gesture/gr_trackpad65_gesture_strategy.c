@@ -26,7 +26,7 @@ trackpad_state_t update_gesture_state(trackpad_base_data_t *trackpad_data) {
     touch_state_t touch_state = get_touch_state(trackpad_data);
 
     if (touch_state == touch_state_none) {
-        if (timer_elapsed(gesture_handle_state.gesture_timer) <= FUTABA_MAX_GESTURE_ACTIVE_TIME) {
+        if (timer_elapsed(gesture_handle_state.gesture_timer) <= GR_TRACKPAD65_MAX_GESTURE_ACTIVE_TIME) {
             return trackpad_state_gesture_fire;
         }
         return trackpad_state_idle;

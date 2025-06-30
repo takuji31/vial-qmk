@@ -27,7 +27,7 @@ trackpad_state_t update_touch_state(trackpad_base_data_t *trackpad_data) {
 
     gesture_handle_state.max_fingers = calc_max_fingers(trackpad_data->num_of_fingers, gesture_handle_state.max_fingers);
     if (touch_state == touch_state_none) {
-        if (timer_elapsed(gesture_handle_state.tap_timer) <= FUTABA_MAX_TAP_TIME) {
+        if (timer_elapsed(gesture_handle_state.tap_timer) <= GR_TRACKPAD65_MAX_TAP_TIME) {
             // pd_dprintf("touch : %d fingers.time: (%d)\n",max_fingers, timer_elapsed(tap_timer));
             return trackpad_state_press;
         }
@@ -47,7 +47,7 @@ trackpad_state_t update_touch_state(trackpad_base_data_t *trackpad_data) {
     }
 
     if (touch_state == touch_state_press) {
-        if (timer_elapsed(gesture_handle_state.tap_timer) <= FUTABA_MAX_TAP_TIME) {
+        if (timer_elapsed(gesture_handle_state.tap_timer) <= GR_TRACKPAD65_MAX_TAP_TIME) {
             // pd_dprintf("strong touch : %d fingers.time: (%d)\n",max_fingers, timer_elapsed(tap_timer));
             return trackpad_state_press;
         }

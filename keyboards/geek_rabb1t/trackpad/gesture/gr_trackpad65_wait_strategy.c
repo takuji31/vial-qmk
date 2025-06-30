@@ -27,7 +27,7 @@ trackpad_state_t update_wait_state(trackpad_base_data_t *trackpad_data) {
     touch_state_t touch_state = get_touch_state(trackpad_data);
 
     if (touch_state == touch_state_none) {
-        if (timer_elapsed(gesture_handle_state.tap_interval) >= FUTABA_RETAP_WAITING_TIME) {
+        if (timer_elapsed(gesture_handle_state.tap_interval) >= GR_TRACKPAD65_RETAP_WAITING_TIME) {
             reset_trackpad_event();
             return trackpad_state_idle;
         }

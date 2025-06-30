@@ -118,13 +118,13 @@ void get_finger_delta(azoteq_iqs5xx_base_data_t base_data, position_t *delta) {
         timer = timer_read();
     }
 
-    if (base_data.number_of_fingers == 1 && timer_elapsed(timer) < WAIT_TIME_FOR_CURSOR_MOVEMENT) {
+    if (base_data.number_of_fingers == 1 && timer_elapsed(timer) < GR_TRACKPAD65_WAIT_FOR_CURSOR_MOVEMENT) {
         delta->x = 0;
         delta->y = 0;
         return;
     }
 
-    if (base_data.number_of_fingers >= 2 && timer_elapsed(timer) < WAIT_TIME_FOR_MULTI_TAP_CURSOR_MOVEMENT) {
+    if (base_data.number_of_fingers >= 2 && timer_elapsed(timer) < GR_TRACKPAD65_WAIT_FOR_MULTI_TAP_CURSOR_MOVEMENT) {
         delta->x = 0;
         delta->y = 0;
         return;
