@@ -2,6 +2,22 @@
 	"name": "grt65_exp_kit",
     "lighting": "none",
     "customKeycodes": [
+        {
+            "shortName": "CHi",
+	        "title": "Double cursor speed while pressing.",
+	        "name": "HIGH_SPEED"
+    	},
+	    {
+            "shortName": "CLw",
+	        "title": "Half cursor speed while pressing.",
+	        "name": "LOW_SPEED"
+    	},
+        {
+            "shortName": "Scroll\nMode",
+	        "title": "While pressed, it scrolls instead of cursor.",
+	        "name": "SCROLL_MODE"
+    	},
+
 	    {
             "shortName": "Val\n1",
 	        "title": "value 1.",
@@ -80,22 +96,6 @@
 	        "name": "GRT_R270"
     	},
 
-	    {
-            "shortName": "CHi",
-	        "title": "Double cursor speed while pressing.",
-	        "name": "HIGH_SPEED"
-    	},
-	    {
-            "shortName": "CLw",
-	        "title": "Half cursor speed while pressing.",
-	        "name": "LOW_SPEED"
-    	},
-        {
-            "shortName": "Scroll\nMode",
-	        "title": "While pressed, it scrolls instead of cursor.",
-	        "name": "SCROLL_MODE"
-    	},
-
         {
             "shortName": "Cursor Speed",
 	        "title": "Select V1 to V9.",
@@ -137,11 +137,6 @@
 	        "name": "GRTL_IS"
     	},
         {
-            "shortName": "Move on Edge",
-	        "title": "Only ON / OFF is allowed.",
-	        "name": "GRTL_MOE"
-    	},
-        {
             "shortName": "Scroll Only",
 	        "title": "Only ON / OFF is allowed.",
 	        "name": "GRTL_SO"
@@ -174,7 +169,7 @@
     ],
     "matrix": {
         "rows": 8,
-        "cols": 11
+        "cols": 10
     },
     "layouts": {
         "keymap":[
@@ -336,16 +331,7 @@
     },
     "4,2",
     {
-      "x": 6.25,
-      "w": 2.5
-    },
-    "5,8\n\n\n\n\n\n\n\n\nMoveOnEdge",
-    {
-      "w": 1.5
-    },
-    "6,8",
-    {
-      "x": 1,
+      "x": 11.25,
       "w": 2.5
     },
     "5,7\n\n\n\n\n\n\n\n\nInertiaScroll",
@@ -366,11 +352,11 @@
       "x": 4.25,
       "w": 2.5
     },
-    "5,10\n\n\n\n\n\n\n\n\nRotate",
+    "5,9\n\n\n\n\n\n\n\n\nRotate",
     {
       "w": 1.5
     },
-    "6,10",
+    "6,9",
     {
       "x": 1,
       "w": 2.5
@@ -384,11 +370,11 @@
       "x": 1,
       "w": 2.5
     },
-    "5,9\n\n\n\n\n\n\n\n\nScrollOnly",
+    "5,8\n\n\n\n\n\n\n\n\nScrollOnly",
     {
       "w": 1.5
     },
-    "6,9"
+    "6,8"
   ],
   [
     "0,0",

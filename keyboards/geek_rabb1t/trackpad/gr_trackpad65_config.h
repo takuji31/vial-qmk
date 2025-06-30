@@ -18,7 +18,12 @@
 #include QMK_KEYBOARD_H
 
 enum GR_TRACKPAD_KEYCODES {
-    GRT_VAL_1= QK_KB_0,
+
+    HIGH_SPEED = QK_KB_0,
+    LOW_SPEED,
+    SCROLL_MODE,
+
+    GRT_VAL_1,
     GRT_VAL_2,
     GRT_VAL_3,
     GRT_VAL_4,
@@ -36,10 +41,6 @@ enum GR_TRACKPAD_KEYCODES {
     GRT_R180,
     GRT_R270,
 
-    HIGH_SPEED,
-    LOW_SPEED,
-    SCROLL_MODE,
-
     // Label use only.
     GRTL_CS,
     GRTL_SS,
@@ -49,7 +50,6 @@ enum GR_TRACKPAD_KEYCODES {
     GRTL_RHS,
     GRTL_IC,
     GRTL_IS,
-    GRTL_MOE,
     GRTL_SO,
     GRTL_R,
     GRTL_1T,
@@ -79,10 +79,8 @@ typedef struct {
 
     bool inertia_cursor;
     bool inertia_scroll;
-    bool move_on_edge;
 
     bool scroll_only;
-
     bool scroll_mode;
 
     rotate_modes_t rotate;

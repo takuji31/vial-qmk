@@ -2,6 +2,22 @@
 	"name": "Futaba",
     "lighting": "none",
     "customKeycodes": [
+        {
+            "shortName": "CHi",
+	        "title": "Double cursor speed while pressing.",
+	        "name": "HIGH_SPEED"
+    	},
+	    {
+            "shortName": "CLw",
+	        "title": "Half cursor speed while pressing.",
+	        "name": "LOW_SPEED"
+    	},
+        {
+            "shortName": "Scroll\nMode",
+	        "title": "While pressed, it scrolls instead of cursor.",
+	        "name": "SCROLL_MODE"
+    	},
+
 	    {
             "shortName": "Val\n1",
 	        "title": "value 1.",
@@ -80,22 +96,6 @@
 	        "name": "GRT_R270"
     	},
 
-	    {
-            "shortName": "CHi",
-	        "title": "Double cursor speed while pressing.",
-	        "name": "HIGH_SPEED"
-    	},
-	    {
-            "shortName": "CLw",
-	        "title": "Half cursor speed while pressing.",
-	        "name": "LOW_SPEED"
-    	},
-        {
-            "shortName": "Scroll\nMode",
-	        "title": "While pressed, it scrolls instead of cursor.",
-	        "name": "SCROLL_MODE"
-    	},
-
         {
             "shortName": "Cursor Speed",
 	        "title": "Select V1 to V9.",
@@ -137,11 +137,6 @@
 	        "name": "GRTL_IS"
     	},
         {
-            "shortName": "Move on Edge",
-	        "title": "Only ON / OFF is allowed.",
-	        "name": "GRTL_MOE"
-    	},
-        {
             "shortName": "Scroll Only",
 	        "title": "Only ON / OFF is allowed.",
 	        "name": "GRTL_SO"
@@ -174,10 +169,10 @@
     ],
     "matrix": {
         "rows": 16,
-        "cols": 10
+        "cols": 9
     },
     "layouts": {
-        "keymap": [
+        "keymap":[
   [
     {
       "y": 0.25,
@@ -320,16 +315,7 @@
   [
     {
       "y": -0.5,
-      "x": 23.5,
-      "w": 2.5
-    },
-    "13,8\n\n\n\n\n\n\n\n\nMoveOnEdge",
-    {
-      "w": 1.5
-    },
-    "14,8",
-    {
-      "x": 0.5,
+      "x": 28,
       "w": 2.5
     },
     "13,7\n\n\n\n\n\n\n\n\nInertiaScroll",
@@ -381,11 +367,11 @@
       "x": 0.5,
       "w": 2.5
     },
-    "13,9\n\n\n\n\n\n\n\n\nScrollOnly",
+    "13,8\n\n\n\n\n\n\n\n\nScrollOnly",
     {
       "w": 1.5
     },
-    "14,9"
+    "14,8"
   ],
   [
     {

@@ -93,21 +93,20 @@ report_mouse_t pointing_device_task_trackpad(report_mouse_t mouse_report) {
 
 
 bool process_record_trackpad(uint16_t keycode, keyrecord_t *record) {
-    uprintf("cursor_speed: %u\n", gr_trackpad_config.cursor_speed);
-    uprintf("enable_accel: %u\n", gr_trackpad_config.enable_accel);
-    uprintf("scroll_speed: %u\n", gr_trackpad_config.scroll_speed);
-    uprintf("cursor_correct: %u\n", gr_trackpad_config.cursor_correct);
+    // uprintf("cursor_speed: %u\n", gr_trackpad_config.cursor_speed);
+    // uprintf("enable_accel: %u\n", gr_trackpad_config.enable_accel);
+    // uprintf("scroll_speed: %u\n", gr_trackpad_config.scroll_speed);
+    // uprintf("cursor_correct: %u\n", gr_trackpad_config.cursor_correct);
 
-    uprintf("reverse_vertical_scroll: %u\n", gr_trackpad_config.reverse_vertical_scroll);
-    uprintf("reverse_horizontal_scroll: %u\n", gr_trackpad_config.reverse_horizontal_scroll);
-    uprintf("inertia_cursor: %u\n", gr_trackpad_config.inertia_cursor);
-    uprintf("inertia_scroll: %u\n", gr_trackpad_config.inertia_scroll);
-    uprintf("move_on_edge: %u\n", gr_trackpad_config.move_on_edge);
-    uprintf("scroll_only: %u\n", gr_trackpad_config.scroll_only);
-    uprintf("rotate: %u\n\n", gr_trackpad_config.rotate);
+    // uprintf("reverse_vertical_scroll: %u\n", gr_trackpad_config.reverse_vertical_scroll);
+    // uprintf("reverse_horizontal_scroll: %u\n", gr_trackpad_config.reverse_horizontal_scroll);
+    // uprintf("inertia_cursor: %u\n", gr_trackpad_config.inertia_cursor);
+    // uprintf("inertia_scroll: %u\n", gr_trackpad_config.inertia_scroll);
+    // uprintf("scroll_only: %u\n", gr_trackpad_config.scroll_only);
+    // uprintf("rotate: %u\n\n", gr_trackpad_config.rotate);
 
-    uprintf("event-type: %d, fingers: %d\n", trackpad_event.type, trackpad_event.num_of_fingers);
-    uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+    // uprintf("event-type: %d, fingers: %d\n", trackpad_event.type, trackpad_event.num_of_fingers);
+    // uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
 
 
     switch (keycode) {

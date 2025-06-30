@@ -14,14 +14,14 @@
     },
     "matrix_pins": {
         "direct": [
-                ["GP10", "GP11", "GP12", null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null, null, null, null, null]
+                ["GP10", "GP11", "GP12", null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null],
+                [null, null, null, null, null, null, null, null, null, null]
             ]
     },
     "processor": "RP2040",
@@ -72,7 +72,6 @@
                 {"matrix": [5, 7], "x": 7, "y": 5},
                 {"matrix": [5, 8], "x": 8, "y": 5},
                 {"matrix": [5, 9], "x": 9, "y": 5},
-                {"matrix": [5, 10], "x": 10, "y": 5},
 
                 {"matrix": [6, 0], "x": 0, "y": 6},
                 {"matrix": [6, 1], "x": 1, "y": 6},
@@ -84,13 +83,11 @@
                 {"matrix": [6, 7], "x": 7, "y": 6},
                 {"matrix": [6, 8], "x": 8, "y": 6},
                 {"matrix": [6, 9], "x": 9, "y": 6},
-                {"matrix": [6, 10], "x": 10, "y": 6},
 
                 {"matrix": [7, 0], "x": 0, "y": 7},
                 {"matrix": [7, 1], "x": 1, "y": 7},
                 {"matrix": [7, 2], "x": 2, "y": 7},
                 {"matrix": [7, 3], "x": 3, "y": 7}
-
             ]
         }
     }

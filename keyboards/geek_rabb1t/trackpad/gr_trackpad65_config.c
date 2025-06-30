@@ -28,11 +28,10 @@ typedef enum  {
 
     inertia_cursor = 6,
     inertia_scroll = 7,
-    move_on_edge = 8,
 
-    scroll_only = 9,
+    scroll_only = 8,
 
-    rotate = 10
+    rotate = 9
 
 } config_col_t;
 
@@ -108,7 +107,6 @@ void load_gr_trackpad65_config(uint8_t config_layer, uint8_t config_row, bool al
 
     gr_trackpad_config.inertia_cursor  = read_bool(inertia_cursor, true);
     gr_trackpad_config.inertia_scroll  = read_bool(inertia_scroll, true);
-    gr_trackpad_config.move_on_edge    = read_bool(move_on_edge, false);
 
     gr_trackpad_config.scroll_only     = read_bool(scroll_only, false);
     gr_trackpad_config.scroll_mode     = gr_trackpad_config.scroll_only;
