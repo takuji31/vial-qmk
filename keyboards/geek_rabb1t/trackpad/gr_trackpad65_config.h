@@ -83,6 +83,8 @@ typedef struct {
 
     bool scroll_only;
 
+    bool scroll_mode;
+
     rotate_modes_t rotate;
 } gr_trackpad65_config_t;
 

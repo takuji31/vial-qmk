@@ -233,14 +233,6 @@ trackpad_base_data_t cursor_corrector_correct(azoteq_iqs5xx_base_data_t base_dat
         .num_of_fingers = base_data.number_of_fingers,
     };
 
-    if (position.x != 0 ||  history_x[0] != 0) {
-        uprintf("mov: %d, %d, %d, %d \n",
-            cursor_x.mov,
-            position.x,
-            history_x[0],
-            cursor_x.carryover);
-    }
-
     update_history(position);
 
     prev_report.x = cursor_x.mov;

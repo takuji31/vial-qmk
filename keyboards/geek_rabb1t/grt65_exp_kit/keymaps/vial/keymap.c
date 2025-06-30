@@ -46,7 +46,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return true;
 
     case SCROLL_MODE:
-      // TODO 実装する
+      if (record->event.pressed) {
+        gr_trackpad_config.scroll_mode = !gr_trackpad_config.scroll_only;
+      } else {
+        gr_trackpad_config.scroll_mode = gr_trackpad_config.scroll_only;
+      }
       return true;
 
     default:

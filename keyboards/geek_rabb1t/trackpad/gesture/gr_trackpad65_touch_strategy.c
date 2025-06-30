@@ -40,7 +40,7 @@ trackpad_state_t update_touch_state(trackpad_base_data_t *trackpad_data) {
             gesture_handle_state.gesture_timer = timer_read();
             return trackpad_state_gesture;
         }
-        if (gr_trackpad_config.scroll_only || gesture_handle_state.max_fingers == 2) {
+        if (gr_trackpad_config.scroll_mode || gesture_handle_state.max_fingers == 2) {
             return trackpad_state_scroll;
         }
         return trackpad_state_move;

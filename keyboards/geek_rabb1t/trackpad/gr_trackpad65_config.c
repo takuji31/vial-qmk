@@ -37,9 +37,7 @@ typedef enum  {
 } config_col_t;
 
 
-gr_trackpad65_config_t gr_trackpad_config = {
-    .cursor_speed = GRT_VAL_5,
-};
+gr_trackpad65_config_t gr_trackpad_config = {0};
 
 const static int MIN_VALUE = 1;
 const static int MAX_VALUE = 9;
@@ -113,6 +111,7 @@ void load_gr_trackpad65_config(uint8_t config_layer, uint8_t config_row, bool al
     gr_trackpad_config.move_on_edge    = read_bool(move_on_edge, false);
 
     gr_trackpad_config.scroll_only     = read_bool(scroll_only, false);
+    gr_trackpad_config.scroll_mode     = gr_trackpad_config.scroll_only;
 
     if (allow_rotate) {
         gr_trackpad_config.rotate = read_rotate(rotate, ROTATE_0);

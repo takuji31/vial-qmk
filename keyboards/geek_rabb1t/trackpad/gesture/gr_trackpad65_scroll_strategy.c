@@ -29,7 +29,6 @@ trackpad_state_t update_scroll_state(trackpad_base_data_t *trackpad_data) {
 
     if (touch_state == touch_state_none) {
         if (gr_trackpad_config.inertia_cursor) {
-            uprintf("next state: inertia cursor \n");
             return trackpad_state_inertia_scroll;
         } else {
             return trackpad_state_idle;
