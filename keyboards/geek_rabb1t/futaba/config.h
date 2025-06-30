@@ -8,7 +8,10 @@
  *  These options are also useful to firmware size reduction.
  */
 
-#define AZOTEQ_IQS5XX_TPS65
+#define AZOTEQ_IQS5XX_WIDTH_MM 65
+#define AZOTEQ_IQS5XX_HEIGHT_MM 49
+#define AZOTEQ_IQS5XX_RESOLUTION_X 2048
+#define AZOTEQ_IQS5XX_RESOLUTION_Y 1536
 
 #define I2C_DRIVER I2CD1
 #define I2C1_SDA_PIN GP2
