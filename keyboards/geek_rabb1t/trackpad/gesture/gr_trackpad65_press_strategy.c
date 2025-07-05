@@ -18,6 +18,7 @@
 #include "gr_trackpad65_idle_strategy.h"
 #include "gr_trackpad65_strategy_helper.h"
 #include "../gr_trackpad65_driver.h"
+#include "../gr_trackpad65_config.h"
 #include "timer.h"
 #include "quantum.h"
 
@@ -45,8 +46,10 @@ report_mouse_t press_strategy(trackpad_base_data_t *trackpad_data) {
         gesture_handle_state.doubleTap = false;
     }
 
-    temp_report.x = trackpad_data->mouse_report_x;
-    temp_report.y = trackpad_data->mouse_report_y;
+    if (!gr_trackpad_config.scroll_mode) {
+        temp_report.x = trackpad_data->mouse_report_x;
+        temp_report.y = trackpad_data->mouse_report_y;
+    }
 
     return temp_report;
 }
