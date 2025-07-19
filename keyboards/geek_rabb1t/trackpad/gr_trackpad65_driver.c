@@ -31,11 +31,6 @@
 #include "gesture/gr_trackpad65_state.h"
 #include <math.h>
 
-#define CONSTRAIN_HID(amt) ((amt) < INT8_MIN ? INT8_MIN : ((amt) > INT8_MAX ? INT8_MAX : (amt)))
-#define CONSTRAIN_HID_XY(amt) ((amt) < XY_REPORT_MIN ? XY_REPORT_MIN : ((amt) > XY_REPORT_MAX ? XY_REPORT_MAX : (amt)))
-
-
-
 trackpad_event_t trackpad_event = {
     .type = trackpad_event_none,
     .num_of_fingers = 0
@@ -66,10 +61,23 @@ static report_mouse_t report(azoteq_iqs5xx_base_data_t base_data) {
     return trackpad_report(rotated);
 }
 
+static uint16_t count = 0;
+static uint16_t rateTimer = 0;
 report_mouse_t pointing_device_driver_get_report(report_mouse_t mouse_report) {
     report_mouse_t temp_report           = {0};
     static uint8_t previous_button_state = 0;
     static uint8_t read_error_count      = 0;
+    count++;
+    if (rateTimer == 0) {
+        rateTimer = timer_read();
+        count = 0;
+    }
+    if (timer_elapsed(rateTimer) >= 10000) {
+        int elapsed = timer_elapsed(rateTimer);
+        uprintf("rate %d, %d, %d\n", count / 10, count, elapsed);
+        rateTimer = timer_read();
+        count = 0;
+    }
 
     if (azoteq_iqs5xx_init_status == I2C_STATUS_SUCCESS) {
         azoteq_iqs5xx_base_data_t base_data = {0};

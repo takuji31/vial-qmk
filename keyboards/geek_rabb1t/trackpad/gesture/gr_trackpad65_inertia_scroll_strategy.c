@@ -73,8 +73,8 @@ report_mouse_t inertia_scroll_strategy(trackpad_base_data_t *trackpad_data) {
         max_cycle = MAX((MAX(abs(inertia.x), abs(inertia.y)) / MAX_DELTA), MIN_INERTIA_CYCLE);
     }
 
-    temp_report.h = CONSTRAIN_HID((inertia.x - (inertia.x * cycle / max_cycle))/100);
-    temp_report.v = CONSTRAIN_HID((inertia.y - (inertia.y * cycle / max_cycle))/100);
+    temp_report.h = CONSTRAIN_HID_HV((inertia.x - (inertia.x * cycle / max_cycle))/100);
+    temp_report.v = CONSTRAIN_HID_HV((inertia.y - (inertia.y * cycle / max_cycle))/100);
     cycle++;
 
     return temp_report;

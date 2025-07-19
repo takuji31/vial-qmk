@@ -23,9 +23,8 @@
 #include "gr_trackpad65_config.h"
 #include "gr_trackpad65_cursor_corrector.h"
 #include "debug.h"
+#include "pointing_device.h"
 
-#define CONSTRAIN_HID(amt) ((amt) < INT8_MIN ? INT8_MIN : ((amt) > INT8_MAX ? INT8_MAX : (amt)))
-#define CONSTRAIN_HID_XY(amt) ((amt) < XY_REPORT_MIN ? XY_REPORT_MIN : ((amt) > XY_REPORT_MAX ? XY_REPORT_MAX : (amt)))
 #define CUROSOR_MIN -1000
 #define CUROSOR_MAX 1000
 #define CONSTRAIN_CURSOR(amt) ((amt) < CUROSOR_MIN ? CUROSOR_MIN : ((amt) > CUROSOR_MAX ? CUROSOR_MAX : (amt)))
@@ -174,6 +173,11 @@ correct_cursor_result_t correct_cursor(int delta, int history[], int carryover) 
         int accel = (abs(sum));
         mov = (carryover + sum * (gr_trackpad_config.cursor_speed) * accel) / (100 * gr_trackpad_config.cursor_correct);
         next_carry = (carryover + sum * (gr_trackpad_config.cursor_speed * accel)) % (100 * gr_trackpad_config.cursor_correct);
+
+        // 最大・最小スピードを制限する
+        int max_cursor_speed = gr_trackpad_config.cursor_speed * 100;
+        int min_cursor_speed = max_cursor_speed * -1;
+        mov = ((mov < min_cursor_speed) ? min_cursor_speed : ((mov > max_cursor_speed) ? max_cursor_speed : mov));
 
     } else {
         int total = (carryover + sum * (gr_trackpad_config.cursor_speed));

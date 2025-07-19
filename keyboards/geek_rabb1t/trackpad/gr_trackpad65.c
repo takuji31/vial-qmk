@@ -19,6 +19,7 @@
 #include "gr_trackpad65_driver.h"
 #include "trackpad/gr_trackpad65_config.h"
 #include "trackpad/gr_trackpad65.h"
+#include "pointing_device.h"
 
 static trackpad_matrix_config_t trackpad_matrix_config = {0};
 
@@ -75,7 +76,6 @@ static speed_mode_t speed_mode = SPEED_MODE_NORMAL;
 
 #define LOW_SPEED_RATIO 2
 #define HIGH_SPEED_RATIO 2
-#define CONSTRAIN_HID_XY(amt) ((amt) < XY_REPORT_MIN ? XY_REPORT_MIN : ((amt) > XY_REPORT_MAX ? XY_REPORT_MAX : (amt)))
 
 report_mouse_t pointing_device_task_trackpad(report_mouse_t mouse_report) {
     if (speed_mode == SPEED_MODE_LOW) {
