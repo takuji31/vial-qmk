@@ -80,10 +80,10 @@ report_mouse_t scroll_strategy(trackpad_base_data_t *trackpad_data) {
     }
 
     if (gesture_handle_state.scroll_direction == scroll_direction_vertical || gesture_handle_state.scroll_direction == scroll_direction_both) {
-        temp_report.v = CONSTRAIN_HID(scroll_y * scroll_dir_y);
+        temp_report.v = CONSTRAIN_HID_HV(scroll_y * scroll_dir_y);
     }
     if (gesture_handle_state.scroll_direction == scroll_direction_horizontal || gesture_handle_state.scroll_direction == scroll_direction_both) {
-        temp_report.h = CONSTRAIN_HID(scroll_x * scroll_dir_x);
+        temp_report.h = CONSTRAIN_HID_HV(scroll_x * scroll_dir_x);
     }
 
     return temp_report;
