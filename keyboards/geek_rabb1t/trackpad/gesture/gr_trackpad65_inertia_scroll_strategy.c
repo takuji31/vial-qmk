@@ -24,8 +24,8 @@
 
 extern trackpad_gesture_handle_state_t gesture_handle_state;
 
-#define MAX_DELTA 10
-#define MIN_INERTIA_CYCLE 40
+#define MAX_DELTA 5
+#define MIN_INERTIA_CYCLE 50
 static int cycle = 0;
 static int max_cycle = MIN_INERTIA_CYCLE;
 
@@ -71,6 +71,7 @@ report_mouse_t inertia_scroll_strategy(trackpad_base_data_t *trackpad_data) {
         }
 
         max_cycle = MAX((MAX(abs(inertia.x), abs(inertia.y)) / MAX_DELTA), MIN_INERTIA_CYCLE);
+        uprintf("inertia scroll cycle %d\n", max_cycle);
     }
 
     temp_report.h = CONSTRAIN_HID_HV((inertia.x - (inertia.x * cycle / max_cycle))/100);

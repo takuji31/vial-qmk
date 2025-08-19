@@ -24,7 +24,7 @@
 
 extern trackpad_gesture_handle_state_t gesture_handle_state;
 
-#define MIN_INERTIA_CYCLE 20
+#define MIN_INERTIA_CYCLE 35
 #define MAX_DELTA 10
 #define INERTIA_THREDSHOLD 30
 static int cycle = 0;
