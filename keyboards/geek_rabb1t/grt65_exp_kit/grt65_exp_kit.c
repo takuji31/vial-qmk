@@ -31,10 +31,10 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_post_init_kb(void) {
     trackpad_matrix_config_t matrix_config = {
-        .finger_gesture_rows = {9,10,11,12},
-        .configuration_row = 14,
+        .finger_gesture_rows = {1,2,3,4},
+        .configuration_row = 6,
         .configuration_layer = 0,
-        .allow_rotate = false
+        .allow_rotate = true
     };
 
     keyboard_post_init_trackpad(matrix_config);

@@ -4,7 +4,7 @@ POINTING_DEVICE_ENABLE = yes
 # MOUSEKEY_ENABLE = yes
 POINTING_DEVICE_DRIVER = custom
 
-ENCODER_MAP_ENABLE = yes
+# ENCODER_MAP_ENABLE = yes
 I2C_DRIVER_REQUIRED = yes
 
 SRC += ../trackpad/azoteq_iqs5xx.c
