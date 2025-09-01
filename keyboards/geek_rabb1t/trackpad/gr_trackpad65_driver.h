@@ -18,7 +18,7 @@
 #include "report.h"
 #include "pointing_device.h"
 
-#define CONSTRAIN_HID_HV(amt) ((amt) < HV_REPORT_MIN ? HV_REPORT_MIN : ((amt) > HV_REPORT_MAX ? HV_REPORT_MAX : (amt)))
+#define CONSTRAIN_HID_HV(amt) ((amt) < MOUSE_REPORT_HV_MIN ? MOUSE_REPORT_HV_MIN : ((amt) > MOUSE_REPORT_HV_MAX ? MOUSE_REPORT_HV_MAX : (amt)))
 
 typedef enum  {
     trackpad_event_none = -1,
