@@ -313,11 +313,3 @@ void oled_write_layer_state(void) {
 }
 
 #endif
-
-bool process_detected_host_os_kb(os_variant_t detected_os) {
-    if (!process_detected_host_os_user(detected_os)) {
-        return false;
-    }
-    cocot_set_win_mode(detected_os == OS_WINDOWS);
-    return true;
-}
