@@ -225,7 +225,6 @@ void cocot_set_scroll_mode(bool mode) {
 void cocot_set_win_mode(bool mode) {
     win_mode = mode;
     cocot_config.scrl_inv = mode ? -1 : 1;
-    set_single_persistent_default_layer(mode ? 4 : 0);
 }
 
 int cocot_get_cpi(void) {
