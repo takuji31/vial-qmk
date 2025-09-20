@@ -17,14 +17,7 @@
 #pragma once
 
 /* Select hand configuration */
-
-#define QUICK_TAP_TERM 0
-#define TAPPING_TERM 180
-
-/* Vial */
-#define VIAL_KEYBOARD_UID {0x18, 0x79, 0xE0, 0xE9, 0x7D, 0x0A, 0x5B, 0x8C}
-#define VIAL_UNLOCK_COMBO_ROWS {6, 10}
-#define VIAL_UNLOCK_COMBO_COLS {0, 0}
-
-/* Saving Space */
-#define NO_ACTION_ONESHOT
+#define DYNAMIC_KEYMAP_LAYER_COUNT 12
+#define VIAL_KEYBOARD_UID {0xA8, 0x9A, 0xD0, 0xA9, 0x61, 0x25, 0xA7, 0xF8}
+#define VIAL_UNLOCK_COMBO_ROWS { 0, 1 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 11 }

@@ -18,10 +18,7 @@
 
 /* Select hand configuration */
 
-#define QUICK_TAP_TERM 0
-#define TAPPING_TERM 180
 #define DYNAMIC_KEYMAP_LAYER_COUNT 7
-#define HOLD_ON_OTHER_KEY_PRESS
 #define VIAL_KEYBOARD_UID {0xA9, 0xAB, 0x6C, 0x1F, 0x7D, 0xB1, 0x0B, 0x61}
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 1 }
 #define VIAL_UNLOCK_COMBO_COLS { 0, 9 }

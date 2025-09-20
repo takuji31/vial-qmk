@@ -1,4 +1,4 @@
-/* Copyright 2021 Salicylic_acid3
+/* Copyright 2024 Salicylic_acid3
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,13 +18,7 @@
 
 /* Select hand configuration */
 
-#define QUICK_TAP_TERM 0
-#define TAPPING_TERM 180
-
-/* Vial */
-#define VIAL_KEYBOARD_UID {0x18, 0x79, 0xE0, 0xE9, 0x7D, 0x0A, 0x5B, 0x8C}
-#define VIAL_UNLOCK_COMBO_ROWS {6, 10}
-#define VIAL_UNLOCK_COMBO_COLS {0, 0}
-
-/* Saving Space */
-#define NO_ACTION_ONESHOT
+#define DYNAMIC_KEYMAP_LAYER_COUNT 12
+#define VIAL_KEYBOARD_UID {0x7A, 0x24, 0xA9, 0xEF, 0x53, 0xFB, 0x0C, 0x88}
+#define VIAL_UNLOCK_COMBO_ROWS { 0, 7 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 6 }
