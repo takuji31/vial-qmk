@@ -275,7 +275,7 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
             break;
         }
     //rgblight_set_effect_range( 9, 36);
-  return state;
+  return layer_state_set_user(state);
 };
 
 
