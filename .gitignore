@@ -116,3 +116,11 @@ user_song_list.h
 compile_commands.json
 .clangd/
 .cache/
+
+# --- allow omni_kbd image assets ---
+!keyboards/omni_kbd/icon/**
+!keyboards/omni_kbd/img/**
+
+# --- allow omni_kbd build dir (images only?) ---
+!keyboards/omni_kbd/build/
+!keyboards/omni_kbd/build/**
