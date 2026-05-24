@@ -4,3 +4,12 @@ VIA_ENABLE = yes                    # Enable compatibility with VIA-protocol con
 DETECTED_HOST_OS_ENABLE = yes
 OS_DETECTION_ENABLE = yes
 
+VIAL_ENABLE = yes
+
+TAP_DANCE_ENABLE = yes
+COMBO_ENABLE = yes
+KEY_OVERRIDE_ENABLE = yes
+MAGIC_ENABLE = yes
+GRAVE_ESC_ENABLE = yes
+NKRO_ENABLE = yes
+

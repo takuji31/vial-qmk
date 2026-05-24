@@ -19,6 +19,6 @@
 /* Select hand configuration */
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 12
-#define VIAL_KEYBOARD_UID {0xA0, 0xE4, 0x2F, 0x1C, 0xBA, 0x4F, 0xCC, 0x10}
+#define VIAL_KEYBOARD_UID {0xD9, 0xA4, 0x6E, 0x78, 0x01, 0x59, 0x9D, 0xF2}
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 2 }
-#define VIAL_UNLOCK_COMBO_COLS { 0, 14 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 12 }

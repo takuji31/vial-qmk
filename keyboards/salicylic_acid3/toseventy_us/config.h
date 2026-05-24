@@ -1,4 +1,4 @@
-/* Copyright 2021 Salicylic_acid3
+/* Copyright 2025 Salicylic_acid3
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,7 @@
 
 #pragma once
 
-/* Select hand configuration */
-
-#define DYNAMIC_KEYMAP_LAYER_COUNT 12
-#define VIAL_KEYBOARD_UID {0xA0, 0xE4, 0x2F, 0x1C, 0xBA, 0x4F, 0xCC, 0x10}
-#define VIAL_UNLOCK_COMBO_ROWS { 0, 2 }
-#define VIAL_UNLOCK_COMBO_COLS { 0, 14 }
+/* RP2040- and hardware-specific config */
+#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
+#define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 500U
+#define PICO_XOSC_STARTUP_DELAY_MULTIPLIER 64

@@ -17,7 +17,7 @@
         "cols": ["GP7", "GP8", "GP9", "GP10", "GP11", "GP12", "GP13", "GP14", "GP15", "GP16", "GP29"],
         "rows": ["GP17", "GP18", "GP19", "GP20", "GP21"]
     },
-    "debounce": 20,
+    "debounce": 30,
     "processor": "RP2040",
     "url": "https://salicylic-acid3.hatenablog.com/",
     "usb": {
