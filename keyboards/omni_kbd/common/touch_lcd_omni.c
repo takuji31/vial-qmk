@@ -174,7 +174,13 @@ void change_swipe_layer(void) {
     swipe_layer = (swipe_layer + 1) % 4;
 }
 
+__attribute__((weak)) const char* get_layer_name_user(uint8_t layer) {
+    return NULL;
+}
+
 const char* get_layer_name(uint8_t layer) {
+    const char* name = get_layer_name_user(layer);
+    if (name != NULL) return name;
     switch (layer) {
         case 0:
             return "BASE";

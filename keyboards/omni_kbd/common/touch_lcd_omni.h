@@ -50,7 +50,8 @@ extern bool initial_touch_flag;
 extern bool touch_signal_view_update;
 extern uint16_t touch_repeat_interval;
 extern uint8_t gesture_id;
-const char *get_layer_name(uint8_t layer); 
+const char *get_layer_name(uint8_t layer);
+const char *get_layer_name_user(uint8_t layer);
 
 painter_image_handle_t* get_img_func(uint16_t keycode);
 painter_image_handle_t* get_layer_img_func(uint16_t layer_count);
